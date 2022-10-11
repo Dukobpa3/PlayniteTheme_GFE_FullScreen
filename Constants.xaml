@@ -85,7 +85,7 @@
             </Setter.Value>
         </Setter>
 			<Style.Triggers>
-					<DataTrigger Binding="{Binding Categories[0].Name}" Value="Reskin">
+					<DataTrigger Binding="{Binding Categories[0].Name}" Value="#Reskin">
 						<Setter Property="BorderBrush">
 							<Setter.Value>
 								<SolidColorBrush Color="{Binding Tags[0].Name}"/>
