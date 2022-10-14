@@ -5,25 +5,27 @@
                     mc:Ignorable="d">
 
     <Style TargetType="{x:Type Main}">
+
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Main}">
+
                     <Grid x:Name="PART_MainHost"
                           d:DesignWidth="{StaticResource DesignWidth}"
                           d:DesignHeight="{StaticResource DesignHeight}"
                           d:DataContext="{x:Static DesignMainViewModel.DesignIntance}">
-                        <Grid x:Name="PART_ViewHost" Background="{DynamicResource MainBackgourndBrush}"> 
+                        <Grid x:Name="PART_ViewHost" Background="{DynamicResource MainBackgourndBrush}">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="*" />
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
-							
-							<MediaElement x:Name="SoundIntro" Source="{ThemeFile 'audio/start.mp3'}" MediaElementBehaviors.Repeat="False" />
-							
+
+                            <!-- <MediaElement x:Name="SoundIntro" Source="{ThemeFile RelativePath='audio/start.mp3'}" MediaElementBehaviors.Repeat="False" /> -->
+
                             <FadeImage x:Name="PART_ImageBackground" Grid.RowSpan="3"
                                        HorizontalAlignment="Center" VerticalAlignment="Top"/>
-									   
+
                             <Grid Grid.Row="0" Background="Transparent"
                                   Height="120">
                                 <Grid.ColumnDefinitions>
@@ -35,7 +37,7 @@
                                     <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="Auto" />
-																	 
+
                                     <ColumnDefinition Width="100" />
                                 </Grid.ColumnDefinitions>
 
@@ -69,11 +71,11 @@
                                     </ContentControl.Style>
                                 </ContentControl>
 
-			   
-																																					  
-																													
-						   
-<!-- battery -->
+
+
+
+
+                                <!-- battery -->
                                 <TextBlock x:Name="PART_TextBatteryPercentage" Style="{DynamicResource TextBlockBaseStyle}" FontSize="26"
                                        VerticalAlignment="Center" Margin="0,0,20,0" 
                                        Grid.Column="3"/>
@@ -81,7 +83,7 @@
                                 <TextBlock x:Name="PART_TextClock" Style="{DynamicResource TextBlockBaseStyle}" FontSize="26"
                                        VerticalAlignment="Center" Margin="30,0"
                                        Grid.Column="4"/>
-<!-- update -->
+                                <!-- update -->
                                 <ButtonEx x:Name="PART_ButtonProgramUpdate" VerticalAlignment="Center"
                                           Margin="10,0,10,0" Height="48" MinWidth="48"
                                           Style="{DynamicResource ButtonTopMenu}"                                          
@@ -92,7 +94,7 @@
                                                    FontSize="28" />
                                     </ButtonEx.Content>
                                 </ButtonEx>
-<!-- notifications -->
+                                <!-- notifications -->
                                 <ButtonEx x:Name="PART_ButtonNotifications" VerticalAlignment="Center"
                                           Margin="10,0,10,0" Height="48" MinWidth="48"
                                           Grid.Column="6">
@@ -113,7 +115,7 @@
                                         </Style>
                                     </Button.Style>
                                 </ButtonEx>
-<!-- menuicon -->
+                                <!-- menuicon -->
                                 <ButtonEx x:Name="PART_ButtonMainMenu" VerticalAlignment="Center"
                                           Style="{DynamicResource ButtonTopMenu}"
                                           Grid.Column="7">
@@ -136,16 +138,16 @@
 
                                 <ContentControl x:Name="PART_ContentFilterItems"
                                             DockPanel.Dock="Left" Focusable="False" />
-<!-- games -->
-									
-									<ListBoxEx x:Name="PART_ListGameItems" Margin="0,0,0,0"
+                                <!-- games -->
+
+                                <ListBoxEx x:Name="PART_ListGameItems" Margin="0,0,0,0"
                                            Background="Transparent" BorderThickness="0"
                                            DockPanel.Dock="Right" VerticalAlignment="Center"
                                            KeyboardNavigation.DirectionalNavigation="Once" >
-									</ListBoxEx>
-                                </DockPanel>
-			
-									
+                                </ListBoxEx>
+                            </DockPanel>
+
+
                             <TextBlock Grid.Row="1" FontSize="40"
                                        Text="{DynamicResource LOCNoGamesFound}"
                                        TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -228,11 +230,11 @@
                                                 Height="38" Width="38" VerticalAlignment="Center" />
                                 </StackPanel>
 
-<!-- QuickMenu -->
-								<ToggleButtonEx x:Name="ToggleLayoutView" Grid.ColumnSpan="5" Style="{DynamicResource ToggleViewButton}" IsChecked="{Settings Fullscreen.HorizontalLayout, Mode=TwoWay}"
+                                <!-- QuickMenu -->
+                                <ToggleButtonEx x:Name="ToggleLayoutView" Grid.ColumnSpan="5" Style="{DynamicResource ToggleViewButton}" IsChecked="{Settings Fullscreen.HorizontalLayout, Mode=TwoWay}"
 										VerticalAlignment="Center" Margin="0,0" Height="50" HorizontalAlignment="Center" >
-								</ToggleButtonEx>							
-							
+                                </ToggleButtonEx>
+
                             </Grid>
                         </Grid>
 
@@ -243,15 +245,15 @@
                                      HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
 
                     </Grid>
-		
-					<ControlTemplate.Triggers>
-						<DataTrigger Binding="{Binding ElementName=ToggleLayoutView, Path=IsFocused}" Value="True">
-							<Setter Property="Visibility" Value="Hidden" TargetName="ControllerButtons" />
-							<Setter Property="Opacity" Value="0" TargetName="PART_ElemExtraFilterActive" />
-							<Setter Property="Background" Value="#070707" TargetName="BottomGridRow" />
-						</DataTrigger>				
-					</ControlTemplate.Triggers>
-		
+
+                    <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=ToggleLayoutView, Path=IsFocused}" Value="True">
+                            <Setter Property="Visibility" Value="Hidden" TargetName="ControllerButtons" />
+                            <Setter Property="Opacity" Value="0" TargetName="PART_ElemExtraFilterActive" />
+                            <Setter Property="Background" Value="#070707" TargetName="BottomGridRow" />
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
+
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
