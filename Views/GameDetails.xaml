@@ -5,16 +5,17 @@
                     mc:Ignorable="d">
 
     <Style TargetType="{x:Type GameDetails}">
+        <Setter Property="Focusable" Value="False"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type GameDetails}">
                     <Grid Background="{DynamicResource MainBackgourndBrush}"
-                        x:Name="PART_ViewHost"
-                        d:DesignWidth="{StaticResource DesignWidth}"
-                        d:DesignHeight="{StaticResource DesignHeight}"
-                        d:DataContext="{x:Static DesignMainViewModel.DesignSelectedGameIntance}"
-                        KeyboardNavigation.DirectionalNavigation="Contained"
-                        KeyboardNavigation.TabNavigation="Contained">
+                          x:Name="PART_ViewHost"
+                          d:DesignWidth="{StaticResource DesignWidth}"
+                          d:DesignHeight="{StaticResource DesignHeight}"
+                          d:DataContext="{x:Static DesignMainViewModel.DesignSelectedGameIntance}"
+                          KeyboardNavigation.DirectionalNavigation="Contained"
+                          KeyboardNavigation.TabNavigation="Contained">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="150" />
                             <ColumnDefinition Width="6*" />
@@ -80,65 +81,56 @@
 
                                 <!-- GameText-->
                                 <TextBlock x:Name="GameTitle" Style="{DynamicResource TextBlockBaseStyle}"
-                                       Text="{Binding DisplayName}"
-                                       Foreground="White" FontFamily="Segoe UI "
-                                       FontSize="42" Margin="20,0,0,0"
-                                       Grid.Column="1"
-                                       VerticalAlignment="Bottom"
-                                       TextWrapping="Wrap"/>
+                                           Text="{Binding DisplayName}"
+                                           Foreground="White" FontFamily="Segoe UI "
+                                           FontSize="42" Margin="20,0,0,0"
+                                           Grid.Column="1"
+                                           VerticalAlignment="Bottom"
+                                           TextWrapping="Wrap"/>
                             </Grid>
 
+                            <!-- Game Info -->
                             <StackPanel x:Name="GameInfo" Orientation="Horizontal" Margin="0,30">
                                 <StackPanel>
                                     <TextBlock Style="{DynamicResource TextBlockBaseStyle}" 
-                                           Text="{DynamicResource LOCTimePlayed}"
-                                           Margin="0,0,0,5" FontWeight="SemiBold" FontSize="14"/>
+                                               Text="{DynamicResource LOCTimePlayed}"
+                                               Margin="0,0,0,5" FontWeight="SemiBold" FontSize="14"/>
                                     <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
-                                           Text="{Binding Playtime, Converter={StaticResource PlayTimeToStringConverter}}" />
+                                               Text="{Binding Playtime, Converter={StaticResource PlayTimeToStringConverter}}" />
                                 </StackPanel>
 
                                 <StackPanel Margin="45,0,0,0">
                                     <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
-                                    Text="{DynamicResource LOCGameLastActivityTitle}"
-                                    Margin="0,0,0,5" FontWeight="SemiBold" FontSize="14"/>
+                                               Text="{DynamicResource LOCGameLastActivityTitle}"
+                                               Margin="0,0,0,5" FontWeight="SemiBold" FontSize="14"/>
                                     <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
-                                    Text="{Binding LastActivity, Converter={StaticResource DateTimeToLastPlayedConverter}}" />
+                                               Text="{Binding LastActivity, Converter={StaticResource DateTimeToLastPlayedConverter}}" />
                                 </StackPanel>
 
                                 <StackPanel Margin="45,0,0,0">
                                     <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
-                                    Text="Released"
-                                    Margin="0,0,0,5" FontWeight="SemiBold" FontSize="14"/>
+                                               Text="{DynamicResource LOCGameReleaseYearTitle}"
+                                               Margin="0,0,0,5" FontWeight="SemiBold" FontSize="14"/>
                                     <TextBlock x:Name="GameRelease" Style="{DynamicResource TextBlockBaseStyle}"
-                                    Text="{Binding ReleaseYear}" />
+                                               Text="{Binding ReleaseYear}" />
                                 </StackPanel>
 
                                 <!--
-                            <StackPanel Margin="45,0,0,0">
+                                <StackPanel Margin="45,0,0,0">
                                     <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
                                                Text="{DynamicResource LOCGenreLabel}"
                                                Margin="0,0,0,5" FontWeight="SemiBold" FontSize="14"/>
                                     <TextBlock x:Name="GameGenre" Style="{DynamicResource TextBlockBaseStyle}"
                                                Text="{Binding Genres, Converter={StaticResource ListToStringConverter}}" />
-                            </StackPanel>
-                            -->
-
-                                <!--
-                                <StackPanel x:Name="GameSourceInfo" Margin="45,0,0,0">
-                                    <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
-                                    Text="{DynamicResource LOCSourceLabel}"
-                                    Margin="0,0,0,5" FontWeight="SemiBold" FontSize="14"/>
-                                    <TextBlock x:Name="GameSource" Style="{DynamicResource TextBlockBaseStyle}"
-                                    Text="{Binding Source}" />
                                 </StackPanel>
                                 -->
-
+                                
                                 <StackPanel x:Name="GamePlatformInfo" Margin="45,0,0,0">
                                     <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
-                                    Text="{DynamicResource LOCGamePlatformTitle}"
-                                    Margin="0,0,0,5" FontWeight="SemiBold" FontSize="14"/>
+                                               Text="{DynamicResource LOCGamePlatformTitle}"
+                                               Margin="0,0,0,5" FontWeight="SemiBold" FontSize="14"/>
                                     <TextBlock x:Name="GamePlatform" Style="{DynamicResource TextBlockBaseStyle}"
-                                    Text="{Binding Platforms, Converter={StaticResource ListToStringConverter}}" />
+                                               Text="{Binding Platforms, Converter={StaticResource ListToStringConverter}}" />
                                 </StackPanel>
                             </StackPanel>
 
@@ -156,29 +148,27 @@
                                             Width="500"
                                             Height="30"
                                             Margin="0,20,0,0"/>
--->
+                            -->
 
-                            <!-- Buttons -->
+                            <!-- Game Buttons -->
                             <StackPanel x:Name="GameButtons" Orientation="Horizontal"
                                         Grid.Column="1" Grid.Row="0" Grid.RowSpan="5"
                                         VerticalAlignment="Bottom"
-                                        Margin="0,100,0,0">
+                                        Margin="0,100,0,0"
+                                        IsEnabled="False">
 
                                 <ButtonEx x:Name="PART_ButtonContext" 
-                                      Style="{DynamicResource GameActionButton}"
-                                      Margin="0,0,20,0" 
-                                      HorizontalContentAlignment="Center" />
+                                          Style="{DynamicResource GameActionButton}"
+                                          Margin="0,0,20,0"/>
 
                                 <ButtonEx x:Name="PART_ButtonOptions"
-                                      Width="90"
-                                      Margin="0,0,20,0"
-                                      HorizontalContentAlignment="Center">
-                                    <Button.Content>
+                                          Width="90"
+                                          Margin="0,0,20,0">
+                                    <ButtonEx.Content>
                                         <TextBlock Text="&#xe712;" FontSize="24"
-                                        FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets"
-                                        VerticalAlignment="Center"
-                                        HorizontalAlignment="Center"/>
-                                    </Button.Content>
+                                                   FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets"
+                                                   VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    </ButtonEx.Content>
                                 </ButtonEx>
                             </StackPanel>
                         </StackPanel>
@@ -235,8 +225,9 @@
                                     Orientation="Vertical"
                                     HorizontalAlignment="Right" VerticalAlignment="Bottom"
                                     Grid.Column="2" Grid.Row="1"
-                                    Visibility="Collapsed"
-                                    Margin="0,0,-20,-20">
+                                    Visibility="Collapsed" Opacity="0"
+                                    Margin="0,0,-20,-20"
+                                    Background="Black">
 
                             <ContentControl x:Name="ExtraMetadataLoader_VideoLoaderControl_NoControls_Sound"/>
 
@@ -247,7 +238,7 @@
                                         Margin="0,-80,20,20">
 
                                 <ToggleButtonEx x:Name="TrailerZoomToggleV" Width="60" Margin="0,0,10,0"
-                                            Style="{DynamicResource TrailerZoomToggle}"/>
+                                            Style="{DynamicResource TrailerZoomToggle}" IsChecked="False"/>
 
                                 <ToggleButtonEx x:Name="TrailerPlayToggleV" Width="60" Margin="0,0,10,0"
                                             Style="{DynamicResource TrailerPlayToggle}"
@@ -260,17 +251,19 @@
                                             Command="{Binding ElementName=ExtraMetadataLoader_VideoLoaderControl_NoControls_Sound, Path=Content.VideoMuteCommand}"/>
 
                             </StackPanel>
+                            
                         </StackPanel>
 
                     </Grid>
 
                     <ControlTemplate.Triggers>
-                        <!--
-                        <DataTrigger Binding="{Binding ElementName=GameSource, Path=Text}" Value="">
-                            <Setter Property="Visibility" Value="Collapsed" TargetName="GameSourceInfo" />
-                        </DataTrigger>
-                        -->
 
+                        <!-- Initial State-->
+                        <DataTrigger Binding="{Binding ElementName=PART_ElemGameDetails, Path=Visibility}" Value="Visible">
+                            <Setter Property="IsChecked" Value="False" TargetName="TrailerZoomToggleV"/>
+                        </DataTrigger>
+
+                        <!-- Check Enabled elements-->
                         <DataTrigger Binding="{Binding ElementName=GamePlatform, Path=Text}" Value="">
                             <Setter Property="Visibility" Value="Collapsed" TargetName="GamePlatformInfo" />
                         </DataTrigger>
@@ -279,9 +272,16 @@
                             <Setter Property="Visibility" Value="Collapsed" TargetName="GameHeader" />
                         </DataTrigger>
 
-                        <!-- Media Controls-->
+                        <!--Trailer-->
                         <DataTrigger Binding="{PluginSettings Plugin=ExtraMetadataLoader, Path=NewContextVideoAvailable, FallbackValue={StaticResource False}}" Value="{StaticResource True}">
                             <Setter Property="Visibility" Value="Visible" TargetName="TrailerContainer"/>
+                            <DataTrigger.EnterActions>
+                                <BeginStoryboard x:Name="Enter">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="TrailerContainer" Duration="0:0:1" From="0" To="1"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </DataTrigger.EnterActions>
                         </DataTrigger>
 
                         <DataTrigger Binding="{Binding ElementName=TrailerZoomToggleV, Path=IsChecked}" Value="{StaticResource False}">
