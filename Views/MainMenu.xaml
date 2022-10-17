@@ -49,7 +49,7 @@
 
     <DataTemplate x:Key="MainMenuHeaderTemplate">
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="25,30">
-			<Image Source="{pmrk:ThemeFile 'Images/xboxlogo.png'}" Height="48"
+            <Image Source="{pmrk:ThemeFile 'Images/PlayniteLogo.png'}" Height="48"
 					RenderOptions.BitmapScalingMode="Fant" />		   
 					   
         </StackPanel>
