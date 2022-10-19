@@ -29,9 +29,11 @@
     <Color x:Key="ControlBackgroundColorDark">#AA202020</Color>
 
 	<Color x:Key="TextColor">#f5f5f5</Color>
+	<Color x:Key="TextColorDarker">#a5a5a5</Color>
     <Color x:Key="TextColorDark">#282828</Color>
 	
     <SolidColorBrush x:Key="TextBrush" Color="{DynamicResource TextColor}" />
+    <SolidColorBrush x:Key="TextBrushDarker" Color="{DynamicResource TextColorDarker}" />
     <SolidColorBrush x:Key="TextBrushDark" Color="{DynamicResource TextColorDark}" />
     <SolidColorBrush x:Key="GlyphBrush" Color="{DynamicResource GlyphColor}" />
     <SolidColorBrush x:Key="GlyphBrightBrush" Color="{DynamicResource GlyphBrightColor}" />
@@ -44,17 +46,24 @@
     <SolidColorBrush x:Key="OverlayBrush" Color="{DynamicResource OverlayColor}" />
 	<SolidColorBrush x:Key="CheckBoxCheckMarkBkBrush" Color="{DynamicResource ControlBackgroundColorDark}" />
  
+    <sys:Double x:Key="FontSizeExtraSmall">14</sys:Double>
     <sys:Double x:Key="FontSizeSmall">18</sys:Double>
     <sys:Double x:Key="FontSize">22</sys:Double>
 
     <sys:Double x:Key="FilterPanelWidth">325</sys:Double>
-    
+
     <Style x:Key="TextBlockBaseStyle" TargetType="TextBlock">
         <Setter Property="FontSize" Value="{DynamicResource FontSize}" />
         <Setter Property="FontFamily" Value="Segoe UI" />
         <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
-    </Style>    
-	<Style x:Key="ButtonTextBlockBaseStyle" TargetType="TextBlock">
+    </Style>
+    <Style TargetType="Label">
+        <Setter Property="FontSize" Value="{DynamicResource FontSize}" />
+        <Setter Property="FontFamily" Value="Segoe UI" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
+    </Style>
+    <Style x:Key="ButtonTextBlockBaseStyle" TargetType="TextBlock">
         <Setter Property="FontSize" Value="{DynamicResource FontSize}" />
         <Setter Property="FontFamily" Value="Segoe UI" />
         <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
@@ -70,7 +79,7 @@
 	
 <!-- ### -->
 	
-	<LinearGradientBrush x:Key="GameDetailsOverlay" StartPoint="0,0.5" EndPoint="1,0.5" >
+	<LinearGradientBrush x:Key="GameDetailsOverlay" StartPoint="0,1" EndPoint="0.6,0.8" >
 		<GradientStop Color="#D9000000" Offset="0"/>
 		<GradientStop Color="#00000000" Offset="1" />
 	</LinearGradientBrush>
