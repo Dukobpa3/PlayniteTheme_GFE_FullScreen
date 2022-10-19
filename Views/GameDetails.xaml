@@ -230,7 +230,19 @@
                                           Style="{DynamicResource GameActionButton}"
                                           Margin="0,0,20,0"/>
 
-                                <ContentControl x:Name="DuplicateHider_ContentControl" Focusable="False" Height="{Binding ActualHeight, ElementName=PART_ButtonContext}" Margin="-15,0,20,0">
+                                <ButtonEx x:Name="PART_ButtonOptions"
+                                          Width="90"
+                                          Margin="0,0,20,0">
+                                    <ButtonEx.Content>
+                                        <TextBlock Text="&#xe712;" FontSize="24"
+                                                   FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets"
+                                                   VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    </ButtonEx.Content>
+                                </ButtonEx>
+
+                                <ContentControl x:Name="DuplicateHider_ContentControl" Focusable="False" 
+                                                Height="{Binding ActualHeight, ElementName=PART_ButtonContext}" 
+                                                Margin="0,0,20,0">
                                     <ContentControl.Tag>
                                         <Style TargetType="ContentControl">
                                             <Setter Property="Focusable" Value="False"/>
@@ -247,10 +259,10 @@
                                                             <ItemsControl.ItemTemplate>
                                                                 <DataTemplate>
                                                                     <ButtonEx x:Name="_Button" Visibility="{Binding IsCurrent, Converter={StaticResource InvertedBooleanToVisibilityConverter}}"
-                                                                            BorderBrush="{StaticResource SelectionLightBrush}" Margin="5,0,2,0" MinWidth="100"
-                                                                            BorderThickness="2,2,2,2" Command="{Binding LaunchCommand}">
+                                                                            BorderBrush="{StaticResource SelectionLightBrush}" Margin="0,0,10,0" MinWidth="120"
+                                                                            BorderThickness="2,2,2,2" Command="{Binding SelectCommand}">
 
-                                                                        <Border x:Name="GameTextButton" Width="150" Background="{DynamicResource ControlBackgroundBrush}" CornerRadius="5,5,5,5" Margin="-25,0,-25,0" >
+                                                                        <Border x:Name="GameTextButton" Width="130" Background="{DynamicResource ControlBackgroundBrush}" CornerRadius="5,5,5,5" Margin="-25,0,-25,0" >
                                                                             <Grid>
 
                                                                                 <Image 	x:Name="ButtonSourceImage" Source="{ThemeFileBinding SourceName, PathFormat='Icons/Sources/{0}.png'}" 
@@ -259,7 +271,7 @@
 
                                                                                 <TextBlock x:Name="PlayInstallText" Visibility="Collapsed" Style="{DynamicResource ButtonTextBlockBaseStyle}"
 											                                               Margin="0,0" Text="{Binding SourceName}"
-                                                                                           Opacity="{Binding Game.IsInstalled, Converter={StaticResource OpacityBoolConverter}}">                            
+                                                                                           Opacity="{Binding Game.IsInstalled, Converter={StaticResource OpacityBoolConverter}}">
 
                                                                                 </TextBlock>
                                                                             </Grid>
@@ -279,16 +291,6 @@
                                         </Style>
                                     </ContentControl.Tag>
                                 </ContentControl>
-
-                                <ButtonEx x:Name="PART_ButtonOptions"
-                                          Width="90"
-                                          Margin="0,0,20,0">
-                                    <ButtonEx.Content>
-                                        <TextBlock Text="&#xe712;" FontSize="24"
-                                                   FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets"
-                                                   VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                                    </ButtonEx.Content>
-                                </ButtonEx>
                             </StackPanel>
                         </StackPanel>
 
