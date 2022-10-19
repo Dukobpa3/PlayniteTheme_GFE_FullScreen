@@ -230,6 +230,56 @@
                                           Style="{DynamicResource GameActionButton}"
                                           Margin="0,0,20,0"/>
 
+                                <ContentControl x:Name="DuplicateHider_ContentControl" Focusable="False" Height="{Binding ActualHeight, ElementName=PART_ButtonContext}" Margin="-15,0,20,0">
+                                    <ContentControl.Tag>
+                                        <Style TargetType="ContentControl">
+                                            <Setter Property="Focusable" Value="False"/>
+                                            <Setter Property="Template">
+                                                <Setter.Value>
+                                                    <ControlTemplate>
+                                                        <ItemsControl ItemsSource="{Binding Games}" 
+                                                                    Focusable="False">
+                                                            <ItemsControl.ItemsPanel>
+                                                                <ItemsPanelTemplate >
+                                                                    <StackPanel Orientation="Horizontal"/>
+                                                                </ItemsPanelTemplate>
+                                                            </ItemsControl.ItemsPanel>
+                                                            <ItemsControl.ItemTemplate>
+                                                                <DataTemplate>
+                                                                    <ButtonEx x:Name="_Button" Visibility="{Binding IsCurrent, Converter={StaticResource InvertedBooleanToVisibilityConverter}}"
+                                                                            BorderBrush="{StaticResource SelectionLightBrush}" Margin="5,0,2,0" MinWidth="100"
+                                                                            BorderThickness="2,2,2,2" Command="{Binding LaunchCommand}">
+
+                                                                        <Border x:Name="GameTextButton" Width="150" Background="{DynamicResource ControlBackgroundBrush}" CornerRadius="5,5,5,5" Margin="-25,0,-25,0" >
+                                                                            <Grid>
+
+                                                                                <Image 	x:Name="ButtonSourceImage" Source="{ThemeFileBinding SourceName, PathFormat='Icons/Sources/{0}.png'}" 
+											                                            Margin="0,17" HorizontalAlignment="Center" VerticalAlignment="Center" RenderOptions.BitmapScalingMode="Fant"
+                                                                                        Opacity="{Binding Game.IsInstalled, Converter={StaticResource OpacityBoolConverter}}"/>
+
+                                                                                <TextBlock x:Name="PlayInstallText" Visibility="Collapsed" Style="{DynamicResource ButtonTextBlockBaseStyle}"
+											                                               Margin="0,0" Text="{Binding SourceName}"
+                                                                                           Opacity="{Binding Game.IsInstalled, Converter={StaticResource OpacityBoolConverter}}">                            
+
+                                                                                </TextBlock>
+                                                                            </Grid>
+                                                                        </Border>
+                                                                    </ButtonEx>
+                                                                    <DataTemplate.Triggers>
+                                                                        <DataTrigger Binding="{Binding ElementName=ButtonSourceImage, Path=Source}" Value="{x:Null}">
+                                                                            <Setter Property="Visibility" Value="Visible" TargetName="PlayInstallText" />
+                                                                        </DataTrigger>
+                                                                    </DataTemplate.Triggers>
+                                                                </DataTemplate>
+                                                            </ItemsControl.ItemTemplate>
+                                                        </ItemsControl>
+                                                    </ControlTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Style>
+                                    </ContentControl.Tag>
+                                </ContentControl>
+
                                 <ButtonEx x:Name="PART_ButtonOptions"
                                           Width="90"
                                           Margin="0,0,20,0">
