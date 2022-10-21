@@ -83,8 +83,7 @@
 											   Foreground="{TemplateBinding Foreground}" FontWeight="Normal"
 											   HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
 											   VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-											   Margin="0,0">                            
-											<ContentPresenter />
+											   Margin="0,0">
                                     </TextBlock>
                                 </Grid>
                             </Border>
