@@ -335,7 +335,8 @@
                                     Orientation="Vertical"
                                     HorizontalAlignment="Right" VerticalAlignment="Bottom"
                                     Grid.Column="2" Grid.Row="1"
-                                    Margin="0,0,-20,-20">
+                                    Margin="0,0,-20,-20"
+                                    Focusable="True">
 
                             <ContentControl x:Name="ExtraMetadataLoader_VideoLoaderControl_NoControls_Sound"
                                             Opacity="0"/>
