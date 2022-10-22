@@ -79,11 +79,13 @@
                                     <Image 	x:Name="ButtonSourceImage" Source="{ThemeFileBinding Source.Name, PathFormat='Icons/Sources/{0}.png'}" 
 											Margin="0,17" HorizontalAlignment="Center" VerticalAlignment="Center" RenderOptions.BitmapScalingMode="Fant"/>
 
-                                    <TextBlock x:Name="PlayInstallText" Visibility="Collapsed" Style="{DynamicResource ButtonTextBlockBaseStyle}"
-											   Foreground="{TemplateBinding Foreground}" FontWeight="Normal"
+                                    <TextBlock x:Name="PlayInstallText" 
+                                               Style="{DynamicResource ButtonTextBlockBaseStyle}"
+											   Foreground="{TemplateBinding Foreground}" FontWeight="SemiBold"
 											   HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
 											   VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-											   Margin="0,0">
+											   Margin="0,0" Opacity="0">
+                                        <ContentPresenter/>
                                     </TextBlock>
                                 </Grid>
                             </Border>
@@ -97,7 +99,7 @@
                         </DataTrigger>
 
                         <DataTrigger Binding="{Binding ElementName=ButtonSourceImage, Path=Source}" Value="{x:Null}">
-                            <Setter Property="Visibility" Value="Visible" TargetName="PlayInstallText" />
+                            <Setter Property="Opacity" Value="1" TargetName="PlayInstallText" />
                         </DataTrigger>
 
                         <Trigger Property="IsEnabled" Value="False">
