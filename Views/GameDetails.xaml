@@ -86,7 +86,7 @@
                             </Grid>
 
                             <!-- Game Info -->
-                            <StackPanel x:Name="GameInfo" Orientation="Horizontal" Margin="0,30">
+                            <StackPanel x:Name="GameInfo" Orientation="Horizontal" Margin="0,30,0,0">
                                 <StackPanel>
                                     <TextBlock Style="{DynamicResource TextBlockBaseStyle}" 
                                                Text="{DynamicResource LOCTimePlayed}"
@@ -120,16 +120,13 @@
                                 </StackPanel>
                             </StackPanel>
 
-
-
                             <!-- Achievments-->
-
                             <StackPanel x:Name="AchievementsPanel"
                                         Orientation="Vertical"
-                                        Width="250"
-                                        MaxWidth="350"
+                                        Width="360"
+                                        MaxWidth="550"
                                         HorizontalAlignment="Left"
-                                        Visibility="Hidden">
+                                        Visibility="Hidden" Margin="0,30,0,0">
 
                                 <Grid>
                                     <Grid.ColumnDefinitions>
@@ -187,10 +184,86 @@
                                                Grid.Column="0" Grid.Row="1"
                                                Text="{PluginSettings Plugin=SuccessStory, Path=EstimateTimeToUnlock}"/>
 -->
-                                <ContentControl x:Name="SuccessStory_PluginProgressBar" Height="10" Margin="0,10,0,0"/>
-
+                                <ProgressBar Minimum="0" Maximum="100" Height="10" Margin="0,10,0,0"
+                                             Value="{PluginSettings Plugin=SuccessStory, Path=Percent}"/>
 
                             </StackPanel>
+
+                            <!-- HowLongToBeat -->
+
+                            <StackPanel x:Name="HowLongToBeatPanel"
+                                        Orientation="Vertical"
+                                        Visibility="Collapsed"
+                                            HorizontalAlignment="Left" Margin="0,30,0,0">
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Style="{DynamicResource TextBlockBaseStyle}" 
+                                               Text="{DynamicResource LOCHowLongToBeatTimeToBeat}"
+                                               Margin="0,0,0,15" FontWeight="SemiBold" FontSize="{DynamicResource FontSizeExtraSmall}"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <StackPanel Margin="25,0,0,0" x:Name="HLTBMainStory" >
+                                        <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
+                                                   Text="{DynamicResource LOCHowLongToBeatMainStory}"
+                                                   Margin="0,0,0,5" FontWeight="SemiBold" FontSize="{DynamicResource FontSizeExtraSmall}"/>
+                                        <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
+                                                   Text="{PluginSettings Plugin=HowLongToBeat, Path=MainStoryFormat}"
+                                                       FontWeight="SemiBold" FontSize="{DynamicResource FontSizeSmall}"/>
+                                    </StackPanel>
+
+                                    <StackPanel Margin="25,0,0,0" x:Name="HLTBMainExtra">
+                                        <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
+                                                   Text="{DynamicResource LOCHowLongToBeatMainExtra}"
+                                                   Margin="0,0,0,5" FontWeight="SemiBold" FontSize="{DynamicResource FontSizeExtraSmall}"/>
+                                        <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
+                                                   Text="{PluginSettings Plugin=HowLongToBeat, Path=MainExtraFormat}"
+                                                       FontWeight="SemiBold" FontSize="{DynamicResource FontSizeSmall}"/>
+                                    </StackPanel>
+
+                                    <StackPanel Margin="25,0,0,0" x:Name="HLTBCompletionist">
+                                        <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
+                                                   Text="{DynamicResource LOCHowLongToBeatCompletionist}"
+                                                   Margin="0,0,0,5" FontWeight="SemiBold" FontSize="{DynamicResource FontSizeExtraSmall}"/>
+                                        <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
+                                                   Text="{PluginSettings Plugin=HowLongToBeat, Path=CompletionistFormat}"
+                                                       FontWeight="SemiBold" FontSize="{DynamicResource FontSizeSmall}"/>
+                                    </StackPanel>
+
+                                    <StackPanel Margin="25,0,0,0" x:Name="HLTBSolo">
+                                        <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
+                                                   Text="{DynamicResource LOCHowLongToBeatSolo}"
+                                                   Margin="0,0,0,5" FontWeight="SemiBold" FontSize="{DynamicResource FontSizeExtraSmall}"/>
+                                        <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
+                                                   Text="{PluginSettings Plugin=HowLongToBeat, Path=SoloFormat}"
+                                                       FontWeight="SemiBold" FontSize="{DynamicResource FontSizeSmall}"/>
+                                    </StackPanel>
+
+                                    <StackPanel Margin="25,0,0,0" x:Name="HLTBCoOp">
+                                        <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
+                                                   Text="{DynamicResource LOCHowLongToBeatCoOp}"
+                                                   Margin="0,0,0,5" FontWeight="SemiBold" FontSize="{DynamicResource FontSizeExtraSmall}"/>
+                                        <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
+                                                   Text="{PluginSettings Plugin=HowLongToBeat, Path=CoOpFormat}"
+                                                       FontWeight="SemiBold" FontSize="{DynamicResource FontSizeSmall}"/>
+                                    </StackPanel>
+
+                                    <StackPanel Margin="25,0,0,0" x:Name="HLTBVs">
+                                        <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
+                                                   Text="{DynamicResource LOCHowLongToBeatVs}"
+                                                   Margin="0,0,0,5" FontWeight="SemiBold" FontSize="{DynamicResource FontSizeExtraSmall}"/>
+                                        <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
+                                                   Text="{PluginSettings Plugin=HowLongToBeat, Path=VsFormat}"
+                                                       FontWeight="SemiBold" FontSize="{DynamicResource FontSizeSmall}"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </StackPanel>
+
+
+
+
+
+
 
                             <!-- Game Buttons -->
                             <StackPanel x:Name="GameButtons" Orientation="Horizontal"
@@ -354,14 +427,14 @@
                                                 IsChecked="{Binding ElementName=MediaButtons, Path=Tag, Mode=OneWayToSource, FallbackValue={StaticResource False}}"/>
 
                                 <ToggleButtonEx x:Name="TrailerPlayToggleV" Width="60" Margin="0,0,10,0"
-                                            Style="{DynamicResource TrailerPlayToggle}"
-                                            IsChecked="{Binding ElementName=ExtraMetadataLoader_VideoLoaderControl_NoControls_Sound, Path=Content.SettingsModel.Settings.IsVideoPlaying, Mode=OneWay, FallbackValue={StaticResource False}}"
-                                            Command="{Binding ElementName=ExtraMetadataLoader_VideoLoaderControl_NoControls_Sound, Path=Content.VideoPlayCommand}"/>
+                                                Style="{DynamicResource TrailerPlayToggle}"
+                                                IsChecked="{Binding ElementName=ExtraMetadataLoader_VideoLoaderControl_NoControls_Sound, Path=Content.SettingsModel.Settings.IsVideoPlaying, Mode=OneWay, FallbackValue={StaticResource False}}"
+                                                Command="{Binding ElementName=ExtraMetadataLoader_VideoLoaderControl_NoControls_Sound, Path=Content.VideoPlayCommand}"/>
 
                                 <ToggleButtonEx x:Name="TrailerMuteToggleV" Width="60" Margin="0,0,10,0"
-                                            Style="{DynamicResource TrailerMuteToggle}"
-                                            IsChecked="{Binding ElementName=ExtraMetadataLoader_VideoLoaderControl_NoControls_Sound, Path=Content.IsPlayerMuted, Mode=OneWay, FallbackValue={StaticResource False}}"
-                                            Command="{Binding ElementName=ExtraMetadataLoader_VideoLoaderControl_NoControls_Sound, Path=Content.VideoMuteCommand}"/>
+                                                Style="{DynamicResource TrailerMuteToggle}"
+                                                IsChecked="{Binding ElementName=ExtraMetadataLoader_VideoLoaderControl_NoControls_Sound, Path=Content.IsPlayerMuted, Mode=OneWay, FallbackValue={StaticResource False}}"
+                                                Command="{Binding ElementName=ExtraMetadataLoader_VideoLoaderControl_NoControls_Sound, Path=Content.VideoMuteCommand}"/>
 
                             </StackPanel>
 
@@ -372,7 +445,7 @@
                     <ControlTemplate.Triggers>
 
                         <!-- Initial State-->
-                        
+
 
                         <!-- Check Enabled elements-->
                         <DataTrigger Binding="{Binding ElementName=GamePlatform, Path=Text}" Value="">
@@ -386,6 +459,37 @@
                         <DataTrigger Binding="{PluginSettings Plugin=SuccessStory, Path=HasData}" Value="{StaticResource True}">
                             <Setter Property="Visibility" Value="Visible" TargetName="AchievementsPanel" />
                         </DataTrigger>
+
+                        <DataTrigger Binding="{PluginSettings Plugin=HowLongToBeat, Path=HasData}" Value="{StaticResource True}">
+                            <Setter Property="Visibility" Value="Visible" TargetName="HowLongToBeatPanel" />
+                        </DataTrigger>
+
+                        <!-- HLTB Panels :/ -->
+                        <DataTrigger Binding="{PluginSettings Plugin=HowLongToBeat, Path=MainStory}" Value="0">
+                            <Setter Property="Visibility" Value="Collapsed" TargetName="HLTBMainStory" />
+                        </DataTrigger>
+
+                        <DataTrigger Binding="{PluginSettings Plugin=HowLongToBeat, Path=MainExtra}" Value="0">
+                            <Setter Property="Visibility" Value="Collapsed" TargetName="HLTBMainExtra" />
+                        </DataTrigger>
+
+                        <DataTrigger Binding="{PluginSettings Plugin=HowLongToBeat, Path=Completionist}" Value="0">
+                            <Setter Property="Visibility" Value="Collapsed" TargetName="HLTBCompletionist" />
+                        </DataTrigger>
+
+                        <DataTrigger Binding="{PluginSettings Plugin=HowLongToBeat, Path=Solo}" Value="0">
+                            <Setter Property="Visibility" Value="Collapsed" TargetName="HLTBSolo" />
+                        </DataTrigger>
+
+                        <DataTrigger Binding="{PluginSettings Plugin=HowLongToBeat, Path=CoOp}" Value="0">
+                            <Setter Property="Visibility" Value="Collapsed" TargetName="HLTBCoOp" />
+                        </DataTrigger>
+
+                        <DataTrigger Binding="{PluginSettings Plugin=HowLongToBeat, Path=Vs}" Value="0">
+                            <Setter Property="Visibility" Value="Collapsed" TargetName="HLTBVs" />
+                        </DataTrigger>
+                        
+                        
 
                         <!--Trailer-->
                         <MultiDataTrigger>
