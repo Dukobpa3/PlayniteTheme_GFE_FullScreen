@@ -1,551 +1,594 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                    mc:Ignorable="d">
+					xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+					xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+					mc:Ignorable="d">
 
-  <Style TargetType="{x:Type GameDetails}">
-    <Setter Property="Template">
-      <Setter.Value>
-        <ControlTemplate TargetType="{x:Type GameDetails}">
-          <Grid Background="{DynamicResource MainBackgourndBrush}"
-                x:Name="PART_ViewHost"
-                d:DesignWidth="{StaticResource DesignWidth}"
-                d:DesignHeight="{StaticResource DesignHeight}"
-                d:DataContext="{x:Static DesignMainViewModel.DesignSelectedGameIntance}"
-                KeyboardNavigation.DirectionalNavigation="Contained"
-                KeyboardNavigation.TabNavigation="Cycle"
-                KeyboardNavigation.ControlTabNavigation="Cycle">
-            <Grid.ColumnDefinitions>
-              <ColumnDefinition Width="150" />
-              <ColumnDefinition Width="6*" />
-              <ColumnDefinition Width="4*" />
-              <ColumnDefinition Width="150" />
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-              <RowDefinition Height="150" />
-              <RowDefinition Height="*" />
-              <RowDefinition Height="150" />
-            </Grid.RowDefinitions>
+	<Style TargetType="{x:Type GameDetails}">
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type GameDetails}">
+					<Grid Background="{DynamicResource MainBackgourndBrush}"
+				x:Name="PART_ViewHost"
+				d:DesignWidth="{StaticResource DesignWidth}"
+				d:DesignHeight="{StaticResource DesignHeight}"
+				d:DataContext="{x:Static DesignMainViewModel.DesignSelectedGameIntance}"
+				KeyboardNavigation.DirectionalNavigation="Contained"
+				KeyboardNavigation.TabNavigation="Cycle"
+				KeyboardNavigation.ControlTabNavigation="Cycle">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="150" />
+							<ColumnDefinition Width="6*" />
+							<ColumnDefinition Width="4*" />
+							<ColumnDefinition Width="150" />
+						</Grid.ColumnDefinitions>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="150" />
+							<RowDefinition Height="*" />
+							<RowDefinition Height="150" />
+						</Grid.RowDefinitions>
 
-            <FadeImage x:Name="PART_ImageBackground" Stretch="Uniform"
-                       HorizontalAlignment="Center" VerticalAlignment="Top"
-                       Grid.ColumnSpan="4" Grid.RowSpan="3">
-              <FadeImage.ImageOpacityMask>
-                <RadialGradientBrush GradientOrigin="0.5,0" Center="0.5,0"
-                                     RadiusX="2" RadiusY="0.9">
-                  <RadialGradientBrush.GradientStops>
-                    <GradientStop Color="Black" Offset="0.3" />
-                    <GradientStop Color="Transparent" Offset="1" />
-                  </RadialGradientBrush.GradientStops>
-                </RadialGradientBrush>
-              </FadeImage.ImageOpacityMask>
-            </FadeImage>
+						<FadeImage x:Name="PART_ImageBackground" Stretch="Uniform"
+					   HorizontalAlignment="Center" VerticalAlignment="Top"
+					   Grid.ColumnSpan="4" Grid.RowSpan="3">
+							<FadeImage.ImageOpacityMask>
+								<RadialGradientBrush GradientOrigin="0.5,0" Center="0.5,0"
+									 RadiusX="2" RadiusY="0.9">
+									<RadialGradientBrush.GradientStops>
+										<GradientStop Color="Black" Offset="0.3" />
+										<GradientStop Color="Transparent" Offset="1" />
+									</RadialGradientBrush.GradientStops>
+								</RadialGradientBrush>
+							</FadeImage.ImageOpacityMask>
+						</FadeImage>
 
-            <Border Background="{DynamicResource GameDetailsOverlay}"
-                    Grid.ColumnSpan="4" Grid.RowSpan="3" >
-              <Border.Style>
-                <Style TargetType="Border">
-                  <Style.Triggers>
-                    <DataTrigger Binding="{Binding DisplayBackgroundImage}" Value="{x:Null}">
-                      <Setter Property="Visibility" Value="Collapsed" />
-                    </DataTrigger>
-                  </Style.Triggers>
-                </Style>
-              </Border.Style>
-            </Border>
-
-
-            <StackPanel Orientation="Vertical"
-                        VerticalAlignment="Bottom" HorizontalAlignment="Left"
-                        Grid.Row="1" Grid.Column="1">
-
-              <!-- ExtraMetaDataLogo -->
-              <ContentControl x:Name="ExtraMetadataLoader_LogoLoaderControl" Margin="0" HorizontalAlignment="Left" />
-
-              <!-- Game Title-->
-              <Grid x:Name="GameHeader" Margin="0">
-                <Grid.ColumnDefinitions>
-                  <ColumnDefinition Width="Auto" />
-                  <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-
-                <!-- IconLogo -->
-                <Image x:Name="GameLogo" Source="{Binding IconObject}"
-                       VerticalAlignment="Bottom" HorizontalAlignment="Left"
-                       Stretch="Uniform"/>
-
-                <!-- GameText-->
-                <TextBlock x:Name="GameTitle" Style="{DynamicResource TextBlockBaseStyle}"
-                           Text="{Binding DisplayName}"
-                           Foreground="White" FontFamily="Segoe UI "
-                           FontSize="42" Margin="20,0,0,0"
-                           Grid.Column="1"
-                           VerticalAlignment="Bottom"
-                           TextWrapping="Wrap"/>
-              </Grid>
-
-              <!-- Game Info -->
-              <StackPanel x:Name="GameInfo" Orientation="Horizontal" Margin="0,30,0,0">
-                <StackPanel>
-                  <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
-                             Text="{DynamicResource LOCTimePlayed}"
-                             Margin="0,0,0,5" FontWeight="SemiBold" FontSize="{DynamicResource FontSizeExtraSmall}"/>
-                  <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
-                             Text="{Binding Playtime, Converter={StaticResource PlayTimeToStringConverter}}" />
-                </StackPanel>
-
-                <StackPanel Margin="45,0,0,0">
-                  <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
-                             Text="{DynamicResource LOCGameLastActivityTitle}"
-                             Margin="0,0,0,5" FontWeight="SemiBold" FontSize="{DynamicResource FontSizeExtraSmall}"/>
-                  <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
-                             Text="{Binding LastActivity, Converter={StaticResource DateTimeToLastPlayedConverter}}" />
-                </StackPanel>
-
-                <StackPanel Margin="45,0,0,0">
-                  <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
-                             Text="{DynamicResource LOCGameReleaseYearTitle}"
-                             Margin="0,0,0,5" FontWeight="SemiBold" FontSize="{DynamicResource FontSizeExtraSmall}"/>
-                  <TextBlock x:Name="GameRelease" Style="{DynamicResource TextBlockBaseStyle}"
-                             Text="{Binding ReleaseYear}" />
-                </StackPanel>
-
-                <StackPanel x:Name="GamePlatformInfo" Margin="45,0,0,0">
-                  <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
-                             Text="{DynamicResource LOCGamePlatformTitle}"
-                             Margin="0,0,0,5" FontWeight="SemiBold" FontSize="{DynamicResource FontSizeExtraSmall}"/>
-                  <TextBlock x:Name="GamePlatform" Style="{DynamicResource TextBlockBaseStyle}"
-                             Text="{Binding Platforms, Converter={StaticResource ListToStringConverter}}" />
-                </StackPanel>
-              </StackPanel>
+						<Border Background="{DynamicResource GameDetailsOverlay}"
+					Grid.ColumnSpan="4" Grid.RowSpan="3" >
+							<Border.Style>
+								<Style TargetType="Border">
+									<Style.Triggers>
+										<DataTrigger Binding="{Binding DisplayBackgroundImage}" Value="{x:Null}">
+											<Setter Property="Visibility" Value="Collapsed" />
+										</DataTrigger>
+									</Style.Triggers>
+								</Style>
+							</Border.Style>
+						</Border>
 
 
-              <StackPanel MinHeight="100">
-                <!-- Achievments-->
-                <StackPanel x:Name="AchievementsPanel"
-                            Orientation="Vertical"
-                            Width="360"
-                            MaxWidth="550"
-                            HorizontalAlignment="Left"
-                            Visibility="Collapsed" Margin="0,30,0,0">
+						<StackPanel Orientation="Vertical"
+						VerticalAlignment="Bottom" HorizontalAlignment="Left"
+						Grid.Row="1" Grid.Column="1">
 
-                  <Grid>
-                    <Grid.ColumnDefinitions>
-                      <ColumnDefinition Width="Auto"/>
-                      <ColumnDefinition Width="*"/>
-                      <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0"
-                        Style="{DynamicResource TextBlockBaseStyle}"
-                                   Text="{DynamicResource LOCSuccessStoryAchievements}"
-                                   FontWeight="SemiBold" FontSize="{DynamicResource FontSizeExtraSmall}"
-                               VerticalAlignment="Center"
-                               Margin="0,0,10,0"/>
+							<!-- ExtraMetaDataLogo -->
+							<ContentControl x:Name="ExtraMetadataLoader_LogoLoaderControl" Margin="0" HorizontalAlignment="Left" />
+
+							<!-- Game Title-->
+							<Grid x:Name="GameHeader" Margin="0">
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="Auto" />
+									<ColumnDefinition Width="*" />
+								</Grid.ColumnDefinitions>
+
+								<!-- IconLogo -->
+								<Image x:Name="GameLogo" Source="{Binding IconObject}"
+					   VerticalAlignment="Bottom" HorizontalAlignment="Left"
+					   Stretch="Uniform"/>
+
+								<!-- GameText-->
+								<TextBlock x:Name="GameTitle" Style="{DynamicResource TextBlockBaseStyle}"
+						   Text="{Binding DisplayName}"
+						   Foreground="White" FontFamily="Segoe UI "
+						   FontSize="42" Margin="20,0,0,0"
+						   Grid.Column="1"
+						   VerticalAlignment="Bottom"
+						   TextWrapping="Wrap"/>
+							</Grid>
+
+                            <StackPanel MinHeight="200">
+                                <!-- Player Statistics Info -->
+                                <StackPanel Orientation="Vertical" MinWidth="500"  Margin="0,35,0,0">
+                                    <!-- <ProgressBar Minimum="0" Maximum="100" Height="1" Margin="0,10,0,0"
+							   Value="0" HorizontalAlignment="Stretch"/> -->
+                                    <StackPanel Orientation="Horizontal">
+
+                                        <TextBlock  Style="{DynamicResource TextBlockBaseStyle}"
+											   Text="{DynamicResource LOCTimePlayed}"
+											   VerticalAlignment="Center"
+											   HorizontalAlignment="Left"
+                                            MinWidth="125"
+											   FontWeight="SemiBold" FontSize="{DynamicResource FontSizeExtraSmall}"/>
+                                        <TextBlock  Style="{DynamicResource TextBlockBaseStyle}"
+												FontWeight="SemiBold" FontSize="{DynamicResource FontSizeSmall}"
+												VerticalAlignment="Center"
+												HorizontalAlignment="Left"
+                                            MinWidth="125"
+												Text="{Binding Playtime, Converter={StaticResource PlayTimeToStringConverter}}" />
+
+                                        <TextBlock  Style="{DynamicResource TextBlockBaseStyle}"
+												Text="{DynamicResource LOCGameLastActivityTitle}"
+												VerticalAlignment="Center"
+												HorizontalAlignment="Right"
+                                            MinWidth="125"
+												FontWeight="SemiBold" FontSize="{DynamicResource FontSizeExtraSmall}"/>
+
+                                        <TextBlock	Style="{DynamicResource TextBlockBaseStyle}"
+												FontWeight="SemiBold" FontSize="{DynamicResource FontSizeSmall}"
+												VerticalAlignment="Center"
+												HorizontalAlignment="Right"
+                                            MinWidth="125"
+												Text="{Binding LastActivity, Converter={StaticResource DateTimeToLastPlayedConverter}}" />
+
+                                    </StackPanel>
+
+                                </StackPanel>
+                                <!-- HowLongToBeat -->
+                                <StackPanel Orientation="Vertical" x:Name="HowLongToBeatPanel" MinWidth="500" Width="500" Visibility="Collapsed"  Margin="0,35,0,0" HorizontalAlignment="Left">
+
+                                    <!-- <ProgressBar Minimum="0" Maximum="100" Height="1" Margin="0,10,0,0"
+							   Value="0" HorizontalAlignment="Stretch"/> -->
+
+                                    <StackPanel Orientation="Horizontal">
+
+                                        <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
+											Text="{DynamicResource LOCHowLongToBeatTimeToBeat}"
+                                           MinWidth="125"
+											FontWeight="SemiBold" FontSize="{DynamicResource FontSizeExtraSmall}"/>
+
+                                        <StackPanel x:Name="HLTBMainStory" MinWidth="125">
+                                            <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
+												Text="{DynamicResource LOCHowLongToBeatMainStory}"
+												Margin="0,0,0,5" FontWeight="SemiBold" FontSize="{DynamicResource FontSizeExtraSmall}"/>
+                                            <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
+												Text="{PluginSettings Plugin=HowLongToBeat, Path=MainStoryFormat}"
+												FontWeight="SemiBold" FontSize="{DynamicResource FontSizeSmall}"/>
+                                        </StackPanel>
+
+                                        <StackPanel  x:Name="HLTBMainExtra" MinWidth="125">
+                                            <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
+												Text="{DynamicResource LOCHowLongToBeatMainExtra}"
+												Margin="0,0,0,5" FontWeight="SemiBold" FontSize="{DynamicResource FontSizeExtraSmall}"/>
+                                            <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
+												Text="{PluginSettings Plugin=HowLongToBeat, Path=MainExtraFormat}"
+												FontWeight="SemiBold" FontSize="{DynamicResource FontSizeSmall}"/>
+                                        </StackPanel>
+
+                                        <StackPanel  x:Name="HLTBCompletionist" MinWidth="125">
+                                            <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
+												Text="{DynamicResource LOCHowLongToBeatCompletionist}"
+												Margin="0,0,0,5" FontWeight="SemiBold" FontSize="{DynamicResource FontSizeExtraSmall}"/>
+                                            <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
+												Text="{PluginSettings Plugin=HowLongToBeat, Path=CompletionistFormat}"
+												FontWeight="SemiBold" FontSize="{DynamicResource FontSizeSmall}"/>
+                                        </StackPanel>
+
+                                        <StackPanel  x:Name="HLTBSolo" MinWidth="125">
+                                            <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
+												Text="{DynamicResource LOCHowLongToBeatSolo}"
+												Margin="0,0,0,5" FontWeight="SemiBold" FontSize="{DynamicResource FontSizeExtraSmall}"/>
+                                            <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
+												Text="{PluginSettings Plugin=HowLongToBeat, Path=SoloFormat}"
+												FontWeight="SemiBold" FontSize="{DynamicResource FontSizeSmall}"/>
+                                        </StackPanel>
+
+                                        <StackPanel x:Name="HLTBCoOp" MinWidth="125">
+                                            <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
+												Text="{DynamicResource LOCHowLongToBeatCoOp}"
+												Margin="0,0,0,5" FontWeight="SemiBold" FontSize="{DynamicResource FontSizeExtraSmall}"/>
+                                            <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
+												Text="{PluginSettings Plugin=HowLongToBeat, Path=CoOpFormat}"
+												FontWeight="SemiBold" FontSize="{DynamicResource FontSizeSmall}"/>
+                                        </StackPanel>
+
+                                        <StackPanel x:Name="HLTBVs" MinWidth="125">
+                                            <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
+												Text="{DynamicResource LOCHowLongToBeatVs}"
+												Margin="0,0,0,5" FontWeight="SemiBold" FontSize="{DynamicResource FontSizeExtraSmall}"/>
+                                            <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
+												Text="{PluginSettings Plugin=HowLongToBeat, Path=VsFormat}"
+												FontWeight="SemiBold" FontSize="{DynamicResource FontSizeSmall}"/>
+                                        </StackPanel>
+                                    </StackPanel>
+
+                                </StackPanel>
+
+                                <!-- Achievments-->
+                                <StackPanel x:Name="AchievementsPanel"
+										Orientation="Vertical"
+										MinWidth="500"
+                                        Width="500"
+                                        HorizontalAlignment="Left"
+										Visibility="Collapsed" Margin="0,35,0,0">
+                                    <!-- <ProgressBar Minimum="0" Maximum="100" Height="1" Margin="0,10,0,0"
+							   Value="0" HorizontalAlignment="Stretch"/> -->
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Column="0"
+						Style="{DynamicResource TextBlockBaseStyle}"
+								   Text="{DynamicResource LOCSuccessStoryAchievements}"
+								   FontWeight="SemiBold" FontSize="{DynamicResource FontSizeExtraSmall}"
+							   VerticalAlignment="Center"
+							   Margin="0,0,10,0"/>
 
 
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="2">
-                      <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
-                             Text="{PluginSettings Plugin=SuccessStory, Path=Unlocked}"
-                             FontWeight="SemiBold" FontSize="{DynamicResource FontSizeSmall}"/>
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="2">
+                                            <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
+							 Text="{PluginSettings Plugin=SuccessStory, Path=Unlocked}"
+							 FontWeight="SemiBold" FontSize="{DynamicResource FontSizeSmall}"/>
 
-                      <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
-                             Text="/"
-                             FontWeight="SemiBold" FontSize="{DynamicResource FontSizeSmall}"/>
+                                            <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
+							 Text="/"
+							 FontWeight="SemiBold" FontSize="{DynamicResource FontSizeSmall}"/>
 
-                      <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
-                                 Text="{PluginSettings Plugin=SuccessStory, Path=Total}"
-                                 FontWeight="SemiBold" FontSize="{DynamicResource FontSizeSmall}"
-                             Margin="0,0,10,0"/>
+                                            <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
+								 Text="{PluginSettings Plugin=SuccessStory, Path=Total}"
+								 FontWeight="SemiBold" FontSize="{DynamicResource FontSizeSmall}"
+							 Margin="0,0,10,0"/>
 
-                      <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
-                             Text="("
-                             FontWeight="SemiBold" FontSize="{DynamicResource FontSizeSmall}"/>
+                                            <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
+							 Text="("
+							 FontWeight="SemiBold" FontSize="{DynamicResource FontSizeSmall}"/>
 
-                      <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
-                                 Text="{PluginSettings Plugin=SuccessStory, Path=Percent}"
-                                 FontWeight="SemiBold" FontSize="{DynamicResource FontSizeSmall}"/>
+                                            <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
+								 Text="{PluginSettings Plugin=SuccessStory, Path=Percent}"
+								 FontWeight="SemiBold" FontSize="{DynamicResource FontSizeSmall}"/>
 
-                      <TextBlock Text="%)"
-                             Style="{DynamicResource TextBlockBaseStyle}"
-                             FontWeight="SemiBold" FontSize="{DynamicResource FontSizeSmall}"/>
+                                            <TextBlock Text="%)"
+							 Style="{DynamicResource TextBlockBaseStyle}"
+							 FontWeight="SemiBold" FontSize="{DynamicResource FontSizeSmall}"/>
 
-                    </StackPanel>
-                  </Grid>
+                                        </StackPanel>
+                                    </Grid>
 
-                  <!--
-                                    <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
-                                               HorizontalAlignment="Right"
-                                               Grid.Column="1" Grid.Row="0"
-                                               Text="{DynamicResource LOCSsTimeToUnlock}"
-                                               Margin="0,0,10,0"/>
+                                    <!--
+									<TextBlock Style="{DynamicResource TextBlockBaseStyle}"
+											   HorizontalAlignment="Right"
+											   Grid.Column="1" Grid.Row="0"
+											   Text="{DynamicResource LOCSsTimeToUnlock}"
+											   Margin="0,0,10,0"/>
 
-                                    
-                                    <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
-                                               HorizontalAlignment="Right"
-                                               Grid.Column="0" Grid.Row="1"
-                                               Text="{PluginSettings Plugin=SuccessStory, Path=EstimateTimeToUnlock}"/>
+									
+									<TextBlock Style="{DynamicResource TextBlockBaseStyle}"
+											   HorizontalAlignment="Right"
+											   Grid.Column="0" Grid.Row="1"
+											   Text="{PluginSettings Plugin=SuccessStory, Path=EstimateTimeToUnlock}"/>
 -->
-                  <ProgressBar Minimum="0" Maximum="100" Height="10" Margin="0,10,0,0"
-                               Value="{PluginSettings Plugin=SuccessStory, Path=Percent}"/>
+                                    <ProgressBar Minimum="0" Maximum="100" Height="10" Margin="0,10,0,0"
+							   Value="{PluginSettings Plugin=SuccessStory, Path=Percent}"/>
 
-                </StackPanel>
-
-                <!-- HowLongToBeat -->
-
-                <StackPanel x:Name="HowLongToBeatPanel"
-                            Orientation="Horizontal"
-                            Visibility="Collapsed"
-                                HorizontalAlignment="Left" Margin="0,30,0,0">
-
-                  <StackPanel Orientation="Horizontal">
-                    <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
-                               Text="{DynamicResource LOCHowLongToBeatTimeToBeat}"
-                               Margin="0,0,0,15" FontWeight="SemiBold" FontSize="{DynamicResource FontSizeExtraSmall}"/>
-                  </StackPanel>
-
-                  <!-- <StackPanel Orientation="Horizontal"> -->
-                    <StackPanel Margin="25,0,0,0" x:Name="HLTBMainStory" >
-                      <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
-                                 Text="{DynamicResource LOCHowLongToBeatMainStory}"
-                                 Margin="0,0,0,5" FontWeight="SemiBold" FontSize="{DynamicResource FontSizeExtraSmall}"/>
-                      <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
-                                 Text="{PluginSettings Plugin=HowLongToBeat, Path=MainStoryFormat}"
-                                     FontWeight="SemiBold" FontSize="{DynamicResource FontSizeSmall}"/>
-                    </StackPanel>
-
-                    <StackPanel Margin="25,0,0,0" x:Name="HLTBMainExtra">
-                      <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
-                                 Text="{DynamicResource LOCHowLongToBeatMainExtra}"
-                                 Margin="0,0,0,5" FontWeight="SemiBold" FontSize="{DynamicResource FontSizeExtraSmall}"/>
-                      <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
-                                 Text="{PluginSettings Plugin=HowLongToBeat, Path=MainExtraFormat}"
-                                     FontWeight="SemiBold" FontSize="{DynamicResource FontSizeSmall}"/>
-                    </StackPanel>
-
-                    <StackPanel Margin="25,0,0,0" x:Name="HLTBCompletionist">
-                      <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
-                                 Text="{DynamicResource LOCHowLongToBeatCompletionist}"
-                                 Margin="0,0,0,5" FontWeight="SemiBold" FontSize="{DynamicResource FontSizeExtraSmall}"/>
-                      <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
-                                 Text="{PluginSettings Plugin=HowLongToBeat, Path=CompletionistFormat}"
-                                     FontWeight="SemiBold" FontSize="{DynamicResource FontSizeSmall}"/>
-                    </StackPanel>
-
-                    <StackPanel Margin="25,0,0,0" x:Name="HLTBSolo">
-                      <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
-                                 Text="{DynamicResource LOCHowLongToBeatSolo}"
-                                 Margin="0,0,0,5" FontWeight="SemiBold" FontSize="{DynamicResource FontSizeExtraSmall}"/>
-                      <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
-                                 Text="{PluginSettings Plugin=HowLongToBeat, Path=SoloFormat}"
-                                     FontWeight="SemiBold" FontSize="{DynamicResource FontSizeSmall}"/>
-                    </StackPanel>
-
-                    <StackPanel Margin="25,0,0,0" x:Name="HLTBCoOp">
-                      <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
-                                 Text="{DynamicResource LOCHowLongToBeatCoOp}"
-                                 Margin="0,0,0,5" FontWeight="SemiBold" FontSize="{DynamicResource FontSizeExtraSmall}"/>
-                      <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
-                                 Text="{PluginSettings Plugin=HowLongToBeat, Path=CoOpFormat}"
-                                     FontWeight="SemiBold" FontSize="{DynamicResource FontSizeSmall}"/>
-                    </StackPanel>
-
-                    <StackPanel Margin="25,0,0,0" x:Name="HLTBVs">
-                      <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
-                                 Text="{DynamicResource LOCHowLongToBeatVs}"
-                                 Margin="0,0,0,5" FontWeight="SemiBold" FontSize="{DynamicResource FontSizeExtraSmall}"/>
-                      <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
-                                 Text="{PluginSettings Plugin=HowLongToBeat, Path=VsFormat}"
-                                     FontWeight="SemiBold" FontSize="{DynamicResource FontSizeSmall}"/>
-                    </StackPanel>
-                 <!-- </StackPanel> -->
-                </StackPanel>
-              </StackPanel>
-
-              <!-- Game Buttons -->
-              <StackPanel x:Name="GameButtons" Orientation="Horizontal"
-                          VerticalAlignment="Bottom"
-                          Margin="0,70,0,0"
-                          IsEnabled="True">
-
-                <ButtonEx x:Name="PART_ButtonContext"
-                          Style="{DynamicResource GameActionButton}"
-                          Margin="0,0,20,0"/>
-
-                <ButtonEx x:Name="PART_ButtonOptions"
-                          Width="90"
-                          Margin="0,0,20,0">
-                  <ButtonEx.Content>
-                    <TextBlock Text="&#xe712;" FontSize="24"
-                               FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets"
-                               VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                  </ButtonEx.Content>
-                </ButtonEx>
-
-                <ContentControl x:Name="DuplicateHider_ContentControl" Focusable="False"
-                                Height="{Binding ActualHeight, ElementName=PART_ButtonContext}"
-                                Margin="0,0,20,0">
-                  <ContentControl.Tag>
-                    <Style TargetType="ContentControl">
-                      <Setter Property="Focusable" Value="False"/>
-                      <Setter Property="Template">
-                        <Setter.Value>
-                          <ControlTemplate>
-                            <StackPanel Orientation="Horizontal">
-                              <TextBlock x:Name="DhIco" Text="&#xf83e;" FontSize="24" FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets"
-                                     Foreground="{StaticResource TextBrushDarker}"
-                                     Style="{DynamicResource TextBlockBaseStyle}"
-                                     VerticalAlignment="Center"
-                                     Margin="0,0,20,0"
-                                     Visibility="{Binding MoreThanOneCopy, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-
-                              <ItemsControl ItemsSource="{Binding Games}"
-                                      Focusable="False">
-                                <ItemsControl.ItemsPanel>
-                                  <ItemsPanelTemplate >
-                                    <StackPanel Orientation="Horizontal"/>
-                                  </ItemsPanelTemplate>
-                                </ItemsControl.ItemsPanel>
-                                <ItemsControl.ItemTemplate>
-                                  <DataTemplate>
-                                    <ButtonEx x:Name="_Button" Visibility="{Binding IsCurrent, Converter={StaticResource InvertedBooleanToVisibilityConverter}}"
-                                        BorderBrush="{StaticResource SelectionLightBrush}" Margin="0,0,10,0" MinWidth="120"
-                                        BorderThickness="2,2,2,2" Command="{Binding SelectCommand}">
-
-                                      <Border x:Name="GameTextButton" Width="130" Background="{DynamicResource ControlBackgroundBrush}" CornerRadius="5,5,5,5" Margin="-25,0,-25,0" >
-                                        <Grid>
-
-                                          <Image 	x:Name="ButtonSourceImage" Source="{ThemeFileBinding SourceName, PathFormat='Icons/Sources/{0}.png'}"
-                        Margin="0,17" HorizontalAlignment="Center" VerticalAlignment="Center" RenderOptions.BitmapScalingMode="Fant"
-                                              Opacity="{Binding Game.IsInstalled, Converter={StaticResource OpacityBoolConverter}}"/>
-
-                                          <TextBlock x:Name="PlayInstallText" Visibility="Collapsed" Style="{DynamicResource ButtonTextBlockBaseStyle}"
-                           Margin="0,0" Text="{Binding SourceName}"
-                                                 Opacity="{Binding Game.IsInstalled, Converter={StaticResource OpacityBoolConverter}}">
-
-                                          </TextBlock>
-                                        </Grid>
-                                      </Border>
-                                    </ButtonEx>
-                                    <DataTemplate.Triggers>
-                                      <DataTrigger Binding="{Binding ElementName=ButtonSourceImage, Path=Source}" Value="{x:Null}">
-                                        <Setter Property="Visibility" Value="Visible" TargetName="PlayInstallText" />
-                                      </DataTrigger>
-                                    </DataTemplate.Triggers>
-                                  </DataTemplate>
-                                </ItemsControl.ItemTemplate>
-                              </ItemsControl>
+                                </StackPanel>
                             </StackPanel>
-                          </ControlTemplate>
-                        </Setter.Value>
-                      </Setter>
-                    </Style>
-                  </ContentControl.Tag>
-                </ContentControl>
-              </StackPanel>
-            </StackPanel>
-
-            <!-- Achievements full list-->
-            <!--
-                        <ContentControl x:Name="SuccessStory_PluginList"
-                                        Grid.Row="1" Grid.Column="2"
-                                        VerticalAlignment="Top"
-                                        MinHeight="300"
-                                        MinWidth="400"/>
-                        -->
-
-            <!-- Features icons -->
-            <ContentControl x:Name="LibraryManagement_PluginFeaturesIconList"
-                            Grid.Column="1" Grid.Row="2"
-                            VerticalAlignment="Center" HorizontalAlignment="Left"
-                            Height="45" Margin="0,0,0,-50"
-                            IsTabStop="False" IsEnabled="False"/>
-
-            <!-- Age Ratings -->
-            <ItemsControlEx ItemsSource="{Binding AgeRatings}"
-                            Grid.Column="2" Grid.Row="2"
-                            VerticalAlignment="Center" HorizontalAlignment="Right"
-                            IsTabStop="False" IsEnabled="False">
-              <ItemsControlEx.ItemsPanel>
-                <ItemsPanelTemplate>
-                  <StackPanel Orientation="Horizontal" Height="Auto"/>
-                </ItemsPanelTemplate>
-              </ItemsControlEx.ItemsPanel>
-              <ItemsControlEx.ItemTemplate>
-                <DataTemplate>
-                  <Grid Margin="0">
-                    <Grid.ColumnDefinitions>
-                      <ColumnDefinition Width="auto" />
-                    </Grid.ColumnDefinitions>
-                    <Border x:Name="RatingIcon" Background="White" CornerRadius="5"
-                            HorizontalAlignment="Center" VerticalAlignment="Center"
-                            Height="80"
-                            Width="Auto"
-                            Margin="3" Visibility="Visible">
-                      <Image Grid.Column="0" x:Name="RatingIconImage"
-                             RenderOptions.BitmapScalingMode="Fant"
-                             SnapsToDevicePixels="True"
-                             Margin="3"
-                             Source="{ThemeFileBinding Name, PathFormat='Icons/AgeRatings/{0}.png'}" />
-                    </Border>
-                  </Grid>
-
-                  <DataTemplate.Triggers>
-                    <DataTrigger Binding="{Binding ElementName=RatingIconImage, Path=Source}" Value="{x:Null}">
-                      <Setter Property="Visibility" Value="Collapsed"/>
-                    </DataTrigger>
-                  </DataTemplate.Triggers>
-                </DataTemplate>
-              </ItemsControlEx.ItemTemplate>
-            </ItemsControlEx>
-
-
-            <!-- Trailer -->
-            <StackPanel x:Name="TrailerContainer"
-                        Orientation="Vertical"
-                        HorizontalAlignment="Right" VerticalAlignment="Bottom"
-                        Grid.Column="2" Grid.Row="1"
-                        Margin="0,0,-20,-20"
-                        Focusable="True">
-
-              <ContentControl x:Name="ExtraMetadataLoader_VideoLoaderControl_NoControls_Sound"
-                              Opacity="0"/>
-
-              <!-- Media Buttons -->
-              <StackPanel x:Name="MediaButtons"
-                          VerticalAlignment="Bottom" HorizontalAlignment="Right"
-                          Orientation="Horizontal"
-                          Margin="0,-80,20,20"
-                          Tag="False" Opacity="0.3"
-                          IsEnabled="{PluginSettings Plugin=ExtraMetadataLoader, Path=NewContextVideoAvailable}">
-
-                <ToggleButtonEx x:Name="TrailerZoomToggleV" Width="60" Margin="0,0,10,0"
-                                Style="{DynamicResource TrailerZoomToggle}"
-                                IsChecked="{Binding ElementName=MediaButtons, Path=Tag, Mode=OneWayToSource, FallbackValue={StaticResource False}}"/>
-
-                <ToggleButtonEx x:Name="TrailerPlayToggleV" Width="60" Margin="0,0,10,0"
-                                Style="{DynamicResource TrailerPlayToggle}"
-                                IsChecked="{Binding ElementName=ExtraMetadataLoader_VideoLoaderControl_NoControls_Sound, Path=Content.SettingsModel.Settings.IsVideoPlaying, Mode=OneWay, FallbackValue={StaticResource False}}"
-                                Command="{Binding ElementName=ExtraMetadataLoader_VideoLoaderControl_NoControls_Sound, Path=Content.VideoPlayCommand}"/>
-
-                <ToggleButtonEx x:Name="TrailerMuteToggleV" Width="60" Margin="0,0,10,0"
-                                Style="{DynamicResource TrailerMuteToggle}"
-                                IsChecked="{Binding ElementName=ExtraMetadataLoader_VideoLoaderControl_NoControls_Sound, Path=Content.IsPlayerMuted, Mode=OneWay, FallbackValue={StaticResource False}}"
-                                Command="{Binding ElementName=ExtraMetadataLoader_VideoLoaderControl_NoControls_Sound, Path=Content.VideoMuteCommand}"/>
-
-              </StackPanel>
-
-            </StackPanel>
-
-          </Grid>
-
-          <ControlTemplate.Triggers>
-
-            <!-- Initial State-->
-
-
-            <!-- Check Enabled elements-->
-            <DataTrigger Binding="{Binding ElementName=GamePlatform, Path=Text}" Value="">
-              <Setter Property="Visibility" Value="Collapsed" TargetName="GamePlatformInfo" />
-            </DataTrigger>
-
-            <DataTrigger Binding="{PluginSettings Plugin=ExtraMetadataLoader, Path=IsLogoAvailable}" Value="{StaticResource True}">
-              <Setter Property="Visibility" Value="Collapsed" TargetName="GameHeader" />
-            </DataTrigger>
-
-            <DataTrigger Binding="{PluginSettings Plugin=SuccessStory, Path=HasData}" Value="{StaticResource True}">
-              <Setter Property="Visibility" Value="Visible" TargetName="AchievementsPanel" />
-            </DataTrigger>
-
-            <DataTrigger Binding="{PluginSettings Plugin=HowLongToBeat, Path=HasData}" Value="{StaticResource True}">
-              <Setter Property="Visibility" Value="Visible" TargetName="HowLongToBeatPanel" />
-            </DataTrigger>
-
-            <!-- HLTB Panels :/ -->
-            <DataTrigger Binding="{PluginSettings Plugin=HowLongToBeat, Path=MainStory}" Value="0">
-              <Setter Property="Visibility" Value="Collapsed" TargetName="HLTBMainStory" />
-            </DataTrigger>
-
-            <DataTrigger Binding="{PluginSettings Plugin=HowLongToBeat, Path=MainExtra}" Value="0">
-              <Setter Property="Visibility" Value="Collapsed" TargetName="HLTBMainExtra" />
-            </DataTrigger>
-
-            <DataTrigger Binding="{PluginSettings Plugin=HowLongToBeat, Path=Completionist}" Value="0">
-              <Setter Property="Visibility" Value="Collapsed" TargetName="HLTBCompletionist" />
-            </DataTrigger>
-
-            <DataTrigger Binding="{PluginSettings Plugin=HowLongToBeat, Path=Solo}" Value="0">
-              <Setter Property="Visibility" Value="Collapsed" TargetName="HLTBSolo" />
-            </DataTrigger>
-
-            <DataTrigger Binding="{PluginSettings Plugin=HowLongToBeat, Path=CoOp}" Value="0">
-              <Setter Property="Visibility" Value="Collapsed" TargetName="HLTBCoOp" />
-            </DataTrigger>
-
-            <DataTrigger Binding="{PluginSettings Plugin=HowLongToBeat, Path=Vs}" Value="0">
-              <Setter Property="Visibility" Value="Collapsed" TargetName="HLTBVs" />
-            </DataTrigger>
 
 
 
-            <!--Trailer-->
-            <MultiDataTrigger>
-              <MultiDataTrigger.Conditions>
-                <Condition Binding="{Binding ElementName=TrailerContainer, Path=Tag}" Value="{StaticResource True}"/>
-                <Condition Binding="{PluginSettings Plugin=ExtraMetadataLoader, Path=NewContextVideoAvailable}" Value="{StaticResource True}"/>
-              </MultiDataTrigger.Conditions>
-              <Setter Property="IsChecked" Value="True" TargetName="TrailerZoomToggleV"/>
-            </MultiDataTrigger>
+                            <!-- Game Buttons -->
+							<StackPanel x:Name="GameButtons" Orientation="Horizontal"
+						  VerticalAlignment="Bottom"
+						  Margin="0,70,0,0"
+						  IsEnabled="True">
 
-            <DataTrigger Binding="{PluginSettings Plugin=ExtraMetadataLoader, Path=NewContextVideoAvailable}" Value="{StaticResource True}">
-              <DataTrigger.EnterActions>
-                <BeginStoryboard>
-                  <Storyboard>
-                    <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="ExtraMetadataLoader_VideoLoaderControl_NoControls_Sound" Duration="0:0:1" From="0" To="1"/>
-                  </Storyboard>
-                </BeginStoryboard>
-              </DataTrigger.EnterActions>
-              <DataTrigger.ExitActions>
-                <BeginStoryboard>
-                  <Storyboard>
-                    <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="ExtraMetadataLoader_VideoLoaderControl_NoControls_Sound" Duration="0:0:1" From="1" To="0"/>
-                  </Storyboard>
-                </BeginStoryboard>
-              </DataTrigger.ExitActions>
-            </DataTrigger>
+								<ButtonEx x:Name="PART_ButtonContext"
+						  Style="{DynamicResource GameActionButton}"
+						  Margin="0,0,20,0"/>
 
-            <DataTrigger Binding="{PluginSettings Plugin=ExtraMetadataLoader, Path=NewContextVideoAvailable}" Value="{StaticResource False}">
-              <Setter Property="IsChecked" Value="False" TargetName="TrailerZoomToggleV"/>
-            </DataTrigger>
+								<ButtonEx x:Name="PART_ButtonOptions"
+						  Width="90"
+						  Margin="0,0,20,0">
+									<ButtonEx.Content>
+										<TextBlock Text="&#xe712;" FontSize="24"
+							   FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets"
+							   VerticalAlignment="Center" HorizontalAlignment="Center"/>
+									</ButtonEx.Content>
+								</ButtonEx>
 
-            <DataTrigger Binding="{Binding ElementName=TrailerContainer, Path=IsKeyboardFocusWithin}" Value="{StaticResource True}">
-              <Setter Property="Opacity" Value="1" TargetName="MediaButtons"/>
-            </DataTrigger>
+								<ContentControl x:Name="DuplicateHider_ContentControl" Focusable="False"
+								Height="{Binding ActualHeight, ElementName=PART_ButtonContext}"
+								Margin="0,0,20,0">
+									<ContentControl.Tag>
+										<Style TargetType="ContentControl">
+											<Setter Property="Focusable" Value="False"/>
+											<Setter Property="Template">
+												<Setter.Value>
+													<ControlTemplate>
+														<StackPanel Orientation="Horizontal">
+															<TextBlock x:Name="DhIco" Text="&#xf83e;" FontSize="24" FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets"
+									 Foreground="{StaticResource TextBrushDarker}"
+									 Style="{DynamicResource TextBlockBaseStyle}"
+									 VerticalAlignment="Center"
+									 Margin="0,0,20,0"
+									 Visibility="{Binding MoreThanOneCopy, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
-            <DataTrigger Binding="{Binding ElementName=TrailerZoomToggleV, Path=IsChecked}" Value="{StaticResource False}">
-              <Setter Property="Grid.Row" Value="1" TargetName="TrailerContainer"/>
-              <Setter Property="Grid.Column" Value="2" TargetName="TrailerContainer"/>
-              <Setter Property="Grid.RowSpan" Value="1" TargetName="TrailerContainer"/>
-              <Setter Property="Grid.ColumnSpan" Value="1" TargetName="TrailerContainer"/>
-              <Setter Property="Margin" Value="0,0,-20,-20" TargetName="TrailerContainer"/>
-              <Setter Property="IsEnabled" Value="{StaticResource True}" TargetName="GameButtons"/>
-            </DataTrigger>
-            <DataTrigger Binding="{Binding ElementName=TrailerZoomToggleV, Path=IsChecked}" Value="{StaticResource True}">
-              <Setter Property="Grid.Column" Value="0" TargetName="TrailerContainer"/>
-              <Setter Property="Grid.Row" Value="0" TargetName="TrailerContainer"/>
-              <Setter Property="Grid.RowSpan" Value="3" TargetName="TrailerContainer"/>
-              <Setter Property="Grid.ColumnSpan" Value="4" TargetName="TrailerContainer"/>
-              <Setter Property="Margin" Value="0" TargetName="TrailerContainer"/>
-              <Setter Property="IsEnabled" Value="{StaticResource False}" TargetName="GameButtons"/>
-            </DataTrigger>
+															<ItemsControl ItemsSource="{Binding Games}"
+									  Focusable="False">
+																<ItemsControl.ItemsPanel>
+																	<ItemsPanelTemplate >
+																		<StackPanel Orientation="Horizontal"/>
+																	</ItemsPanelTemplate>
+																</ItemsControl.ItemsPanel>
+																<ItemsControl.ItemTemplate>
+																	<DataTemplate>
+																		<ButtonEx x:Name="_Button" Visibility="{Binding IsCurrent, Converter={StaticResource InvertedBooleanToVisibilityConverter}}"
+										BorderBrush="{StaticResource SelectionLightBrush}" Margin="0,0,10,0" MinWidth="120"
+										BorderThickness="2,2,2,2" Command="{Binding SelectCommand}">
 
-            <DataTrigger Binding="{Binding ElementName=ExtraMetadataLoader_VideoLoaderControl_NoControls_Sound, Path=Content.SettingsModel.Settings.IsVideoPlaying}" Value="{StaticResource True}">
-              <Setter Property="Command" Value="{Binding ElementName=ExtraMetadataLoader_VideoLoaderControl_NoControls_Sound, Path=Content.VideoPauseCommand}" TargetName="TrailerPlayToggleV"/>
-            </DataTrigger>
+																			<Border x:Name="GameTextButton" Width="130" Background="{DynamicResource ControlBackgroundBrush}" CornerRadius="5,5,5,5" Margin="-25,0,-25,0" >
+																				<Grid>
 
-          </ControlTemplate.Triggers>
-        </ControlTemplate>
-      </Setter.Value>
-    </Setter>
-  </Style>
+																					<Image 	x:Name="ButtonSourceImage" Source="{ThemeFileBinding SourceName, PathFormat='Icons/Sources/{0}.png'}"
+						Margin="0,17" HorizontalAlignment="Center" VerticalAlignment="Center" RenderOptions.BitmapScalingMode="Fant"
+											  Opacity="{Binding Game.IsInstalled, Converter={StaticResource OpacityBoolConverter}}"/>
+
+																					<TextBlock x:Name="PlayInstallText" Visibility="Collapsed" Style="{DynamicResource ButtonTextBlockBaseStyle}"
+						   Margin="0,0" Text="{Binding SourceName}"
+												 Opacity="{Binding Game.IsInstalled, Converter={StaticResource OpacityBoolConverter}}">
+
+																					</TextBlock>
+																				</Grid>
+																			</Border>
+																		</ButtonEx>
+																		<DataTemplate.Triggers>
+																			<DataTrigger Binding="{Binding ElementName=ButtonSourceImage, Path=Source}" Value="{x:Null}">
+																				<Setter Property="Visibility" Value="Visible" TargetName="PlayInstallText" />
+																			</DataTrigger>
+																		</DataTemplate.Triggers>
+																	</DataTemplate>
+																</ItemsControl.ItemTemplate>
+															</ItemsControl>
+														</StackPanel>
+													</ControlTemplate>
+												</Setter.Value>
+											</Setter>
+										</Style>
+									</ContentControl.Tag>
+								</ContentControl>
+							</StackPanel>
+						</StackPanel>
+
+						<!-- Achievements full list-->
+						<!--
+						<ContentControl x:Name="SuccessStory_PluginList"
+										Grid.Row="1" Grid.Column="2"
+										VerticalAlignment="Top"
+										MinHeight="300"
+										MinWidth="400"/>
+						-->
+
+
+
+						<!-- Features icons -->
+                        <ContentControl x:Name="LibraryManagement_PluginFeaturesIconList"
+										Grid.Column="1" Grid.Row="2"
+										VerticalAlignment="Center" HorizontalAlignment="Left"
+										Height="45"
+										IsTabStop="False" IsEnabled="False"
+                                        Margin="-50,0,0,0"/>
+
+                        <!-- Age Ratings -->
+						<ItemsControlEx ItemsSource="{Binding AgeRatings}"
+							Grid.Column="2" Grid.Row="2"
+							VerticalAlignment="Center" HorizontalAlignment="Right"
+							IsTabStop="False" IsEnabled="False">
+							<ItemsControlEx.ItemsPanel>
+								<ItemsPanelTemplate>
+									<StackPanel Orientation="Horizontal" Height="Auto"/>
+								</ItemsPanelTemplate>
+							</ItemsControlEx.ItemsPanel>
+							<ItemsControlEx.ItemTemplate>
+								<DataTemplate>
+									<Grid Margin="0">
+										<Grid.ColumnDefinitions>
+											<ColumnDefinition Width="auto" />
+										</Grid.ColumnDefinitions>
+										<Border x:Name="RatingIcon" Background="White" CornerRadius="5"
+							HorizontalAlignment="Center" VerticalAlignment="Center"
+							Height="80"
+							Width="Auto"
+							Margin="3" Visibility="Visible">
+											<Image Grid.Column="0" x:Name="RatingIconImage"
+							 RenderOptions.BitmapScalingMode="Fant"
+							 SnapsToDevicePixels="True"
+							 Margin="3"
+							 Source="{ThemeFileBinding Name, PathFormat='Icons/AgeRatings/{0}.png'}" />
+										</Border>
+									</Grid>
+
+									<DataTemplate.Triggers>
+										<DataTrigger Binding="{Binding ElementName=RatingIconImage, Path=Source}" Value="{x:Null}">
+											<Setter Property="Visibility" Value="Collapsed"/>
+										</DataTrigger>
+									</DataTemplate.Triggers>
+								</DataTemplate>
+							</ItemsControlEx.ItemTemplate>
+						</ItemsControlEx>
+
+
+						<!-- Trailer -->
+						<StackPanel x:Name="TrailerContainer"
+						Orientation="Vertical"
+						HorizontalAlignment="Right" VerticalAlignment="Bottom"
+						Grid.Column="2" Grid.Row="1"
+						Margin="0,0,-20,-20"
+						Focusable="True">
+
+							<ContentControl x:Name="ExtraMetadataLoader_VideoLoaderControl_NoControls_Sound"
+							  Opacity="0"/>
+
+							<!-- Media Buttons -->
+							<StackPanel x:Name="MediaButtons"
+						  VerticalAlignment="Bottom" HorizontalAlignment="Right"
+						  Orientation="Horizontal"
+						  Margin="0,-80,20,20"
+						  Tag="False" Opacity="0.3"
+						  IsEnabled="{PluginSettings Plugin=ExtraMetadataLoader, Path=NewContextVideoAvailable}">
+
+								<ToggleButtonEx x:Name="TrailerZoomToggleV" Width="60" Margin="0,0,10,0"
+								Style="{DynamicResource TrailerZoomToggle}"
+								IsChecked="{Binding ElementName=MediaButtons, Path=Tag, Mode=OneWayToSource, FallbackValue={StaticResource False}}"/>
+
+								<ToggleButtonEx x:Name="TrailerPlayToggleV" Width="60" Margin="0,0,10,0"
+								Style="{DynamicResource TrailerPlayToggle}"
+								IsChecked="{Binding ElementName=ExtraMetadataLoader_VideoLoaderControl_NoControls_Sound, Path=Content.SettingsModel.Settings.IsVideoPlaying, Mode=OneWay, FallbackValue={StaticResource False}}"
+								Command="{Binding ElementName=ExtraMetadataLoader_VideoLoaderControl_NoControls_Sound, Path=Content.VideoPlayCommand}"/>
+
+								<ToggleButtonEx x:Name="TrailerMuteToggleV" Width="60" Margin="0,0,10,0"
+								Style="{DynamicResource TrailerMuteToggle}"
+								IsChecked="{Binding ElementName=ExtraMetadataLoader_VideoLoaderControl_NoControls_Sound, Path=Content.IsPlayerMuted, Mode=OneWay, FallbackValue={StaticResource False}}"
+								Command="{Binding ElementName=ExtraMetadataLoader_VideoLoaderControl_NoControls_Sound, Path=Content.VideoMuteCommand}"/>
+
+							</StackPanel>
+
+						</StackPanel>
+
+
+                        <!-- Release info -->
+                        <StackPanel x:Name="ReleaseInfo" Grid.Column="0" Grid.Row="0" Orientation="Vertical"
+									Grid.ColumnSpan="3"
+									VerticalAlignment="Top" HorizontalAlignment="Left"
+                                    Margin="10,10">
+                            
+
+
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
+										Text="{Binding ReleaseYear}"
+										FontWeight="Regular" FontSize="30"
+										Margin="0,0,10,0" VerticalAlignment="Center"
+                                           Foreground="Gray"/>
+
+                                <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="0">
+                                    <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
+										Text="{Binding Platforms, Converter={StaticResource ListToStringConverter}}"
+										FontWeight="Regular" FontSize="{DynamicResource FontSizeExtraSmall}"
+										Margin="0"
+                                               Foreground="Gray"/>
+                                    <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
+										Text="{Binding Publishers, Converter={StaticResource ListToStringConverter}}"
+										FontWeight="Regular" FontSize="{DynamicResource FontSizeExtraSmall}"
+										Margin="0"
+                                               Foreground="Gray"/>
+
+                                    <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
+										Text="{Binding Developers, Converter={StaticResource ListToStringConverter}}"
+										FontWeight="Regular" FontSize="{DynamicResource FontSizeExtraSmall}"
+										Margin="0"
+                                               Foreground="Gray"/>
+
+                                </StackPanel>
+                            </StackPanel>
+
+                        </StackPanel>
+
+
+
+                    </Grid>
+
+					<ControlTemplate.Triggers>
+
+						<!-- Initial State-->
+
+
+						<!-- Check Enabled elements-->
+						<DataTrigger Binding="{PluginSettings Plugin=ExtraMetadataLoader, Path=IsLogoAvailable}" Value="{StaticResource True}">
+							<Setter Property="Visibility" Value="Collapsed" TargetName="GameHeader" />
+						</DataTrigger>
+
+						<DataTrigger Binding="{PluginSettings Plugin=SuccessStory, Path=HasData}" Value="{StaticResource True}">
+							<Setter Property="Visibility" Value="Visible" TargetName="AchievementsPanel" />
+						</DataTrigger>
+
+						<DataTrigger Binding="{PluginSettings Plugin=HowLongToBeat, Path=HasData}" Value="{StaticResource True}">
+						  <Setter Property="Visibility" Value="Visible" TargetName="HowLongToBeatPanel" />
+						</DataTrigger>
+
+						<!-- HLTB Panels :/ -->
+						<DataTrigger Binding="{PluginSettings Plugin=HowLongToBeat, Path=MainStory}" Value="0">
+							<Setter Property="Visibility" Value="Collapsed" TargetName="HLTBMainStory" />
+						</DataTrigger>
+
+						<DataTrigger Binding="{PluginSettings Plugin=HowLongToBeat, Path=MainExtra}" Value="0">
+							<Setter Property="Visibility" Value="Collapsed" TargetName="HLTBMainExtra" />
+						</DataTrigger>
+
+						<DataTrigger Binding="{PluginSettings Plugin=HowLongToBeat, Path=Completionist}" Value="0">
+							<Setter Property="Visibility" Value="Collapsed" TargetName="HLTBCompletionist" />
+						</DataTrigger>
+
+						<DataTrigger Binding="{PluginSettings Plugin=HowLongToBeat, Path=Solo}" Value="0">
+							<Setter Property="Visibility" Value="Collapsed" TargetName="HLTBSolo" />
+						</DataTrigger>
+
+						<DataTrigger Binding="{PluginSettings Plugin=HowLongToBeat, Path=CoOp}" Value="0">
+							<Setter Property="Visibility" Value="Collapsed" TargetName="HLTBCoOp" />
+						</DataTrigger>
+
+						<DataTrigger Binding="{PluginSettings Plugin=HowLongToBeat, Path=Vs}" Value="0">
+							<Setter Property="Visibility" Value="Collapsed" TargetName="HLTBVs" />
+						</DataTrigger>
+
+
+
+						<!--Trailer-->
+						<MultiDataTrigger>
+							<MultiDataTrigger.Conditions>
+								<Condition Binding="{Binding ElementName=TrailerContainer, Path=Tag}" Value="{StaticResource True}"/>
+								<Condition Binding="{PluginSettings Plugin=ExtraMetadataLoader, Path=NewContextVideoAvailable}" Value="{StaticResource True}"/>
+							</MultiDataTrigger.Conditions>
+							<Setter Property="IsChecked" Value="True" TargetName="TrailerZoomToggleV"/>
+						</MultiDataTrigger>
+
+						<DataTrigger Binding="{PluginSettings Plugin=ExtraMetadataLoader, Path=NewContextVideoAvailable}" Value="{StaticResource True}">
+							<DataTrigger.EnterActions>
+								<BeginStoryboard>
+									<Storyboard>
+										<DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="ExtraMetadataLoader_VideoLoaderControl_NoControls_Sound" Duration="0:0:1" From="0" To="1"/>
+									</Storyboard>
+								</BeginStoryboard>
+							</DataTrigger.EnterActions>
+							<DataTrigger.ExitActions>
+								<BeginStoryboard>
+									<Storyboard>
+										<DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="ExtraMetadataLoader_VideoLoaderControl_NoControls_Sound" Duration="0:0:1" From="1" To="0"/>
+									</Storyboard>
+								</BeginStoryboard>
+							</DataTrigger.ExitActions>
+						</DataTrigger>
+
+						<DataTrigger Binding="{PluginSettings Plugin=ExtraMetadataLoader, Path=NewContextVideoAvailable}" Value="{StaticResource False}">
+							<Setter Property="IsChecked" Value="False" TargetName="TrailerZoomToggleV"/>
+						</DataTrigger>
+
+						<DataTrigger Binding="{Binding ElementName=TrailerContainer, Path=IsKeyboardFocusWithin}" Value="{StaticResource True}">
+							<Setter Property="Opacity" Value="1" TargetName="MediaButtons"/>
+						</DataTrigger>
+
+						<DataTrigger Binding="{Binding ElementName=TrailerZoomToggleV, Path=IsChecked}" Value="{StaticResource False}">
+							<Setter Property="Grid.Row" Value="1" TargetName="TrailerContainer"/>
+							<Setter Property="Grid.Column" Value="2" TargetName="TrailerContainer"/>
+							<Setter Property="Grid.RowSpan" Value="1" TargetName="TrailerContainer"/>
+							<Setter Property="Grid.ColumnSpan" Value="1" TargetName="TrailerContainer"/>
+							<Setter Property="Margin" Value="0,0,-20,-20" TargetName="TrailerContainer"/>
+							<Setter Property="IsEnabled" Value="{StaticResource True}" TargetName="GameButtons"/>
+						</DataTrigger>
+						<DataTrigger Binding="{Binding ElementName=TrailerZoomToggleV, Path=IsChecked}" Value="{StaticResource True}">
+							<Setter Property="Grid.Column" Value="0" TargetName="TrailerContainer"/>
+							<Setter Property="Grid.Row" Value="0" TargetName="TrailerContainer"/>
+							<Setter Property="Grid.RowSpan" Value="3" TargetName="TrailerContainer"/>
+							<Setter Property="Grid.ColumnSpan" Value="4" TargetName="TrailerContainer"/>
+							<Setter Property="Margin" Value="0" TargetName="TrailerContainer"/>
+							<Setter Property="IsEnabled" Value="{StaticResource False}" TargetName="GameButtons"/>
+						</DataTrigger>
+
+						<DataTrigger Binding="{Binding ElementName=ExtraMetadataLoader_VideoLoaderControl_NoControls_Sound, Path=Content.SettingsModel.Settings.IsVideoPlaying}" Value="{StaticResource True}">
+							<Setter Property="Command" Value="{Binding ElementName=ExtraMetadataLoader_VideoLoaderControl_NoControls_Sound, Path=Content.VideoPauseCommand}" TargetName="TrailerPlayToggleV"/>
+						</DataTrigger>
+
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
 </ResourceDictionary>
