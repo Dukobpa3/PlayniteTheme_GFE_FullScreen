@@ -59,7 +59,7 @@
 						<StackPanel Orientation="Vertical"
 						VerticalAlignment="Bottom" HorizontalAlignment="Left"
 						Grid.Row="1" Grid.Column="1"
-                                    Margin="0,150">
+                                    Margin="0,130">
 
 							<!-- ExtraMetaDataLogo -->
 							<ContentControl x:Name="ExtraMetadataLoader_LogoLoaderControl" Margin="0" HorizontalAlignment="Left" />
@@ -86,13 +86,67 @@
 						   TextWrapping="Wrap"/>
 							</Grid>
 
-                            <StackPanel MinHeight="150" MaxWidth="510">
+                            <StackPanel MinHeight="130" MaxWidth="510">
+
+
+                                <!-- Player Statistics Info -->
+                                <StackPanel Orientation="Vertical" MinWidth="510" Width="510" Margin="0,35,0,0">
+                                    <!-- <ProgressBar Minimum="0" Maximum="100" Height="1" Margin="0,10,0,0"
+							   Value="0" HorizontalAlignment="Stretch"/> -->
+                                    <StackPanel Orientation="Vertical">
+
+                                        <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                                            <TextBlock  Style="{DynamicResource TextBlockBaseStyle}"
+												Text="{DynamicResource LOCGameLastActivityTitle}"
+												VerticalAlignment="Center"
+                                            MinWidth="250"
+												FontWeight="SemiBold" FontSize="{DynamicResource FontSizeSmall}"/>
+
+                                            <TextBlock	Style="{DynamicResource TextBlockBaseStyle}"
+												FontWeight="SemiBold" 
+												VerticalAlignment="Center"
+												Text="{Binding LastActivity, Converter={StaticResource DateTimeToLastPlayedConverter}}" />
+
+                                        </StackPanel>
+
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock  Style="{DynamicResource TextBlockBaseStyle}"
+											   Text="{DynamicResource LOCTimePlayed}"
+											   VerticalAlignment="Center"
+                                            MinWidth="250"
+											   FontWeight="SemiBold" FontSize="{DynamicResource FontSizeSmall}"/>
+                                            <TextBlock  Style="{DynamicResource TextBlockBaseStyle}"
+												FontWeight="SemiBold"
+												VerticalAlignment="Center"
+												Text="{Binding Playtime, Converter={StaticResource PlayTimeToStringConverter}}" />
+
+                                        </StackPanel>
+
+
+
+                                        <StackPanel x:Name="HLTBTimeToBeat" Orientation="Horizontal" Margin="0,5,0,0">
+                                            <TextBlock  Style="{DynamicResource TextBlockBaseStyle}"
+												Text="{DynamicResource LOCHowLongToBeatTimeToBeat}"
+												VerticalAlignment="Center"
+                                            MinWidth="250"
+												FontWeight="SemiBold" FontSize="{DynamicResource FontSizeSmall}"/>
+
+                                            <TextBlock	Style="{DynamicResource TextBlockBaseStyle}"
+												FontWeight="SemiBold"
+												VerticalAlignment="Center"
+												Text="{PluginSettings Plugin=HowLongToBeat, Path=TimeToBeatFormat}" />
+
+                                        </StackPanel>
+
+                                    </StackPanel>
+                                </StackPanel>
+
 
                                 <!-- Achievments-->
                                 <StackPanel x:Name="AchievementsPanel"
 										Orientation="Vertical"
-										MinWidth="510"
-                                        Width="510"
+										MinWidth="360"
+                                        Width="360"
                                         HorizontalAlignment="Left"
 										Visibility="Collapsed" Margin="0,35,0,0">
                                     <!-- <ProgressBar Minimum="0" Maximum="100" Height="1" Margin="0,10,0,0"
@@ -106,36 +160,36 @@
                                         <TextBlock Grid.Column="0"
 						Style="{DynamicResource TextBlockBaseStyle}"
 								   Text="{DynamicResource LOCSuccessStoryAchievements}"
-								   FontWeight="SemiBold" FontSize="{DynamicResource FontSizeExtraSmall}"
+								   FontWeight="SemiBold" FontSize="{DynamicResource FontSizeSmall}"
 							   VerticalAlignment="Center"
 							   Margin="0,0,10,0"/>
 
 
                                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="2">
                                             <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
-							 Text="{PluginSettings Plugin=SuccessStory, Path=Unlocked}"
-							 FontWeight="SemiBold" FontSize="{DynamicResource FontSizeSmall}"/>
+														Text="{PluginSettings Plugin=SuccessStory, Path=Unlocked}"
+														FontWeight="SemiBold"/>
 
                                             <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
-							 Text="/"
-							 FontWeight="SemiBold" FontSize="{DynamicResource FontSizeSmall}"/>
+														Text="/"
+														FontWeight="SemiBold"/>
 
                                             <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
-								 Text="{PluginSettings Plugin=SuccessStory, Path=Total}"
-								 FontWeight="SemiBold" FontSize="{DynamicResource FontSizeSmall}"
-							 Margin="0,0,10,0"/>
+														Text="{PluginSettings Plugin=SuccessStory, Path=Total}"
+														FontWeight="SemiBold"
+														Margin="0,0,10,0"/>
 
                                             <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
-							 Text="("
-							 FontWeight="SemiBold" FontSize="{DynamicResource FontSizeSmall}"/>
+														Text="("
+							 FontWeight="SemiBold"/>
 
                                             <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
 								 Text="{PluginSettings Plugin=SuccessStory, Path=Percent}"
-								 FontWeight="SemiBold" FontSize="{DynamicResource FontSizeSmall}"/>
+								 FontWeight="SemiBold"/>
 
                                             <TextBlock Text="%)"
 							 Style="{DynamicResource TextBlockBaseStyle}"
-							 FontWeight="SemiBold" FontSize="{DynamicResource FontSizeSmall}"/>
+							 FontWeight="SemiBold"/>
 
                                         </StackPanel>
                                     </Grid>
@@ -158,73 +212,6 @@
 
                                 </StackPanel>
 
-                                <!-- Player Statistics Info -->
-                                <StackPanel Orientation="Vertical" MinWidth="510" Width="510" Margin="0,35,0,0">
-                                    <!-- <ProgressBar Minimum="0" Maximum="100" Height="1" Margin="0,10,0,0"
-							   Value="0" HorizontalAlignment="Stretch"/> -->
-                                    <StackPanel Orientation="Horizontal">
-
-                                        <StackPanel Orientation="Vertical">
-                                            <TextBlock  Style="{DynamicResource TextBlockBaseStyle}"
-												Text="{DynamicResource LOCGameLastActivityTitle}"
-												VerticalAlignment="Center"
-												HorizontalAlignment="Right"
-                                            MinWidth="170" MaxWidth="170"
-                                                    TextWrapping="Wrap"
-												FontWeight="SemiBold" FontSize="{DynamicResource FontSizeExtraSmall}"/>
-
-                                            <TextBlock	Style="{DynamicResource TextBlockBaseStyle}"
-												FontWeight="SemiBold" FontSize="{DynamicResource FontSizeSmall}"
-												VerticalAlignment="Center"
-												HorizontalAlignment="Right"
-                                            MinWidth="170" MaxWidth="170"
-                                                    TextWrapping="Wrap"
-												Text="{Binding LastActivity, Converter={StaticResource DateTimeToLastPlayedConverter}}" />
-
-                                        </StackPanel>
-
-                                        <StackPanel Orientation="Vertical" HorizontalAlignment="Right">
-                                            <TextBlock  Style="{DynamicResource TextBlockBaseStyle}"
-											   Text="{DynamicResource LOCTimePlayed}"
-											   VerticalAlignment="Center"
-											   HorizontalAlignment="Right"
-                                            MinWidth="170"  MaxWidth="170"
-                                                    TextWrapping="Wrap"
-											   FontWeight="SemiBold" FontSize="{DynamicResource FontSizeExtraSmall}"/>
-                                            <TextBlock  Style="{DynamicResource TextBlockBaseStyle}"
-												FontWeight="SemiBold" FontSize="{DynamicResource FontSizeSmall}"
-												VerticalAlignment="Center"
-												HorizontalAlignment="Right"
-                                            MinWidth="170" MaxWidth="170"
-                                                    TextWrapping="Wrap"
-												Text="{Binding Playtime, Converter={StaticResource PlayTimeToStringConverter}}" />
-
-                                        </StackPanel>
-
-
-
-                                        <StackPanel x:Name="HLTBTimeToBeat" Orientation="Vertical" HorizontalAlignment="Right">
-                                            <TextBlock  Style="{DynamicResource TextBlockBaseStyle}"
-												Text="{DynamicResource LOCHowLongToBeatTimeToBeat}"
-												VerticalAlignment="Center"
-												HorizontalAlignment="Right"
-                                            MinWidth="170" MaxWidth="170"
-                                                    TextWrapping="Wrap"
-												FontWeight="SemiBold" FontSize="{DynamicResource FontSizeExtraSmall}"/>
-
-                                            <TextBlock	Style="{DynamicResource TextBlockBaseStyle}"
-												FontWeight="SemiBold" FontSize="{DynamicResource FontSizeSmall}"
-												VerticalAlignment="Center"
-												HorizontalAlignment="Right"
-                                            MinWidth="170" MaxWidth="170"
-                                                    TextWrapping="Wrap"
-												Text="{PluginSettings Plugin=HowLongToBeat, Path=TimeToBeatFormat}" />
-
-                                        </StackPanel>
-
-                                    </StackPanel>
-                                </StackPanel>
-                                
                                 <!-- HowLongToBeat -->
                                 <!--
                                 <StackPanel Orientation="Vertical" x:Name="HowLongToBeatPanel" MinWidth="510" Width="510" Visibility="Collapsed"  Margin="0,35,0,0" HorizontalAlignment="Left">
@@ -309,10 +296,7 @@
 
                             </StackPanel>
 
-
-
-                            
-						</StackPanel>
+                        </StackPanel>
 
 
                         <!-- Game Buttons -->
@@ -416,7 +400,7 @@
 										VerticalAlignment="Center" HorizontalAlignment="Left"
 										Height="45"
 										IsTabStop="False" IsEnabled="False"
-                                        Margin="-20,50,0,0"/>
+                                        Margin="-10,50,0,0"/>
 
 
 
