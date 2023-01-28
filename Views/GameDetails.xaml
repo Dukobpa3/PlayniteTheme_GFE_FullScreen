@@ -91,8 +91,6 @@
 
                                 <!-- Player Statistics Info -->
                                 <StackPanel Orientation="Vertical" MinWidth="510" Width="510" Margin="0,35,0,0">
-                                    <!-- <ProgressBar Minimum="0" Maximum="100" Height="1" Margin="0,10,0,0"
-							   Value="0" HorizontalAlignment="Stretch"/> -->
                                     <StackPanel Orientation="Vertical">
 
                                         <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
@@ -100,7 +98,7 @@
 												Text="{DynamicResource LOCGameLastActivityTitle}"
 												VerticalAlignment="Center"
                                             MinWidth="250"
-												FontWeight="SemiBold" FontSize="{DynamicResource FontSizeSmall}"/>
+												FontWeight="SemiBold" FontSize="{DynamicResource FontSizeExtraSmall}"/>
 
                                             <TextBlock	Style="{DynamicResource TextBlockBaseStyle}"
 												FontWeight="SemiBold" 
@@ -114,7 +112,7 @@
 											   Text="{DynamicResource LOCTimePlayed}"
 											   VerticalAlignment="Center"
                                             MinWidth="250"
-											   FontWeight="SemiBold" FontSize="{DynamicResource FontSizeSmall}"/>
+											   FontWeight="SemiBold" FontSize="{DynamicResource FontSizeExtraSmall}"/>
                                             <TextBlock  Style="{DynamicResource TextBlockBaseStyle}"
 												FontWeight="SemiBold"
 												VerticalAlignment="Center"
@@ -129,7 +127,7 @@
 												Text="{DynamicResource LOCHowLongToBeatTimeToBeat}"
 												VerticalAlignment="Center"
                                             MinWidth="250"
-												FontWeight="SemiBold" FontSize="{DynamicResource FontSizeSmall}"/>
+												FontWeight="SemiBold" FontSize="{DynamicResource FontSizeExtraSmall}"/>
 
                                             <TextBlock	Style="{DynamicResource TextBlockBaseStyle}"
 												FontWeight="SemiBold"
@@ -149,8 +147,6 @@
                                         Width="360"
                                         HorizontalAlignment="Left"
 										Visibility="Collapsed" Margin="0,35,0,0">
-                                    <!-- <ProgressBar Minimum="0" Maximum="100" Height="1" Margin="0,10,0,0"
-							   Value="0" HorizontalAlignment="Stretch"/> -->
                                     <Grid>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="Auto"/>
@@ -160,7 +156,7 @@
                                         <TextBlock Grid.Column="0"
 						Style="{DynamicResource TextBlockBaseStyle}"
 								   Text="{DynamicResource LOCSuccessStoryAchievements}"
-								   FontWeight="SemiBold" FontSize="{DynamicResource FontSizeSmall}"
+								   FontWeight="SemiBold" FontSize="{DynamicResource FontSizeExtraSmall}"
 							   VerticalAlignment="Center"
 							   Margin="0,0,10,0"/>
 
@@ -445,11 +441,11 @@
 
                             <!-- Age Ratings -->
 
-                            <Border Background="White" CornerRadius="5"
-									HorizontalAlignment="Right" VerticalAlignment="Center"
+                            <Border x:Name="AR_Simple"  Visibility="Collapsed" HorizontalAlignment="Right" VerticalAlignment="Center"
+                                Background="White" CornerRadius="5"
 									Height="80"
                                     Width="80"
-									Margin="10" Visibility="Visible">
+									Margin="10">
 
                                 <ContentControl x:Name="LibraryManagement_PluginAgeRating" 
 												VerticalAlignment="Center" HorizontalAlignment="Center"
@@ -461,11 +457,11 @@
                             </Border>
 
 
-
-                            <ItemsControlEx ItemsSource="{Binding AgeRatings}"
+                            <ItemsControlEx x:Name="AR_Full" ItemsSource="{Binding AgeRatings}"
                                             Visibility="Collapsed"
 								VerticalAlignment="Center" HorizontalAlignment="Right"
-								IsTabStop="False" IsEnabled="False">
+								IsTabStop="False" IsEnabled="False"
+                                            Margin="10">
                                 <ItemsControlEx.ItemsPanel>
                                     <ItemsPanelTemplate>
                                         <StackPanel Orientation="Horizontal" Height="Auto"/>
@@ -594,6 +590,15 @@
                             <Setter Property="Visibility" Value="Collapsed" TargetName="HLTBTimeToBeat" />
                         </DataTrigger>
 
+
+                        <!-- Age Ratings -->
+                        <DataTrigger Binding="{PluginSettings Plugin=LibraryManagement, Path=EnableIntegrationAgeRatings}" Value="{StaticResource True}">
+                            <Setter Property="Visibility" Value="Visible" TargetName="AR_Simple" />
+                        </DataTrigger>
+
+                        <DataTrigger Binding="{PluginSettings Plugin=LibraryManagement, Path=EnableIntegrationAgeRatings}" Value="{StaticResource False}">
+                            <Setter Property="Visibility" Value="Visible" TargetName="AR_Full" />
+                        </DataTrigger>
 
 
                         <!--Trailer-->
