@@ -93,7 +93,7 @@
                                 <StackPanel Orientation="Vertical" MinWidth="510" Width="510" Margin="0,35,0,0">
                                     <StackPanel Orientation="Vertical">
 
-                                        <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                                        <StackPanel Orientation="Horizontal" Margin="0">
                                             <TextBlock  Style="{DynamicResource TextBlockBaseStyle}"
 												Text="{DynamicResource LOCGameLastActivityTitle}"
 												VerticalAlignment="Center"
@@ -122,7 +122,7 @@
 
 
 
-                                        <StackPanel x:Name="HLTBTimeToBeat" Orientation="Horizontal" Margin="0,5,0,0">
+                                        <StackPanel x:Name="HLTBTimeToBeat" Orientation="Horizontal" Margin="0">
                                             <TextBlock  Style="{DynamicResource TextBlockBaseStyle}"
 												Text="{DynamicResource LOCHowLongToBeatTimeToBeat}"
 												VerticalAlignment="Center"
@@ -146,7 +146,7 @@
 										MinWidth="360"
                                         Width="360"
                                         HorizontalAlignment="Left"
-										Visibility="Collapsed" Margin="0,35,0,0">
+										Visibility="Collapsed" Margin="0,15,0,0">
                                     <Grid>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="Auto"/>
@@ -299,27 +299,32 @@
                         <StackPanel x:Name="GameButtons" 
                                     Grid.Column="1" Grid.Row="1"
                                     Orientation="Horizontal"
-						  VerticalAlignment="Bottom"
-						  Margin="0,70,0,0"
-						  IsEnabled="True">
+									VerticalAlignment="Bottom"
+									Margin="0,70,0,0"
+									IsEnabled="True">
 
                             <ButtonEx x:Name="PART_ButtonContext"
-						  Style="{DynamicResource GameActionButton}"
-						  Margin="0,0,20,0"/>
+										Style="{DynamicResource GameActionButton}"
+										Margin="0,0,20,0"/>
+
+                            <!--
+                            <ToggleButtonEx Width="90" Margin="0,0,20,0"
+								Style="{DynamicResource FavoriteToggle}"
+								IsChecked="{Binding Game, ElementName=Favorite, Mode=TwoWay}"/> -->
 
                             <ButtonEx x:Name="PART_ButtonOptions"
-						  Width="90"
-						  Margin="0,0,20,0">
+										Width="90"
+										Margin="0,0,20,0">
                                 <ButtonEx.Content>
                                     <TextBlock Text="&#xe712;" FontSize="24"
-							   FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets"
-							   VerticalAlignment="Center" HorizontalAlignment="Center"/>
+												FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets"
+												VerticalAlignment="Center" HorizontalAlignment="Center"/>
                                 </ButtonEx.Content>
                             </ButtonEx>
 
                             <ContentControl x:Name="DuplicateHider_ContentControl" Focusable="False"
-								Height="{Binding ActualHeight, ElementName=PART_ButtonContext}"
-								Margin="0,0,20,0">
+											Height="{Binding ActualHeight, ElementName=PART_ButtonContext}"
+											Margin="0,0,20,0">
                                 <ContentControl.Tag>
                                     <Style TargetType="ContentControl">
                                         <Setter Property="Focusable" Value="False"/>
@@ -328,14 +333,14 @@
                                                 <ControlTemplate>
                                                     <StackPanel Orientation="Horizontal">
                                                         <TextBlock x:Name="DhIco" Text="&#xf83e;" FontSize="24" FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets"
-									 Foreground="{StaticResource TextBrushDarker}"
-									 Style="{DynamicResource TextBlockBaseStyle}"
-									 VerticalAlignment="Center"
-									 Margin="0,0,20,0"
-									 Visibility="{Binding MoreThanOneCopy, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+																	 Foreground="{StaticResource TextBrushDarker}"
+																	 Style="{DynamicResource TextBlockBaseStyle}"
+																	 VerticalAlignment="Center"
+																	 Margin="0,0,20,0"
+																	 Visibility="{Binding MoreThanOneCopy, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                                                   />
 
-                                                        <ItemsControl ItemsSource="{Binding Games}"
-									  Focusable="False">
+                                                        <ItemsControl ItemsSource="{Binding Games}" Focusable="False">
                                                             <ItemsControl.ItemsPanel>
                                                                 <ItemsPanelTemplate >
                                                                     <StackPanel Orientation="Horizontal"/>
@@ -344,20 +349,17 @@
                                                             <ItemsControl.ItemTemplate>
                                                                 <DataTemplate>
                                                                     <ButtonEx x:Name="_Button" Visibility="{Binding IsCurrent, Converter={StaticResource InvertedBooleanToVisibilityConverter}}"
-										BorderBrush="{StaticResource SelectionLightBrush}" Margin="0,0,10,0" MinWidth="120"
-										BorderThickness="2,2,2,2" Command="{Binding SelectCommand}">
-
+																				BorderBrush="{StaticResource SelectionLightBrush}" Margin="0,0,10,0" MinWidth="120"
+																				BorderThickness="2,2,2,2" Command="{Binding SelectCommand}">
                                                                         <Border x:Name="GameTextButton" Width="130" Background="{DynamicResource ControlBackgroundBrush}" CornerRadius="5,5,5,5" Margin="-25,0,-25,0" >
                                                                             <Grid>
-
                                                                                 <Image 	x:Name="ButtonSourceImage" Source="{ThemeFileBinding SourceName, PathFormat='Icons/Sources/{0}.png'}"
-						Margin="0,17" HorizontalAlignment="Center" VerticalAlignment="Center" RenderOptions.BitmapScalingMode="Fant"
-											  Opacity="{Binding Game.IsInstalled, Converter={StaticResource OpacityBoolConverter}}"/>
+																						Margin="0,17" HorizontalAlignment="Center" VerticalAlignment="Center" RenderOptions.BitmapScalingMode="Fant"
+																						Opacity="{Binding Game.IsInstalled, Converter={StaticResource OpacityBoolConverter}}"/>
 
                                                                                 <TextBlock x:Name="PlayInstallText" Visibility="Collapsed" Style="{DynamicResource ButtonTextBlockBaseStyle}"
-						   Margin="0,0" Text="{Binding SourceName}"
-												 Opacity="{Binding Game.IsInstalled, Converter={StaticResource OpacityBoolConverter}}">
-
+																							Margin="0,0" Text="{Binding SourceName}"
+																							Opacity="{Binding Game.IsInstalled, Converter={StaticResource OpacityBoolConverter}}">
                                                                                 </TextBlock>
                                                                             </Grid>
                                                                         </Border>
@@ -508,7 +510,8 @@
 						HorizontalAlignment="Right" VerticalAlignment="Bottom"
 						Grid.Column="2" Grid.Row="1"
 						Margin="0,0,-20,-20"
-						Focusable="True">
+						Focusable="True"
+                                    Visibility="{PluginSettings Plugin=ExtraMetadataLoader, Path=EnableVideoPlayer, Converter={StaticResource BooleanToVisibilityConverter}}">
 
                             <ContentControl x:Name="ExtraMetadataLoader_VideoLoaderControl_NoControls_Sound"
 							  Opacity="0"/>
